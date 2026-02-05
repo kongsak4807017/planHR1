@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="th">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>เมนูคัดเลือกโครงการ — เขตสุขภาพที่ 1</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;600;700&family=Playfair+Display:wght@500;700&display=swap');
+
+    :root {
+      --bg: #F4F1EC;
+      --panel: #FFFFFF;
+      --ink: #1C2430;
+      --muted: #5E6572;
+      --accent: #0B6E6E;
+      --accent-2: #D97941;
+      --accent-3: #1B8A6B;
+      --line: #E7E2DA;
+      --shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "IBM Plex Sans Thai", "Noto Sans Thai", "Tahoma", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1100px 500px at 20% -10%, #FFFFFF 0%, #F8F4EE 45%, #F4F1EC 70%),
+        radial-gradient(800px 500px at 90% 10%, #F8F3E8 0%, #F4F1EC 70%),
+        var(--bg);
+    }
+
+    .page {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F5F7F7 60%);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      margin: 0 0 6px;
+      font-family: "Playfair Display", "Noto Serif Thai", serif;
+      font-size: 32px;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .meta {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .stat {
+      background: var(--panel);
+      border-radius: 12px;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+    }
+
+    .stat .label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .stat .value {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    .stat .sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .stat-help {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      display: grid;
+      gap: 4px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 20px;
+      margin-top: 22px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: var(--panel);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2 {
+      margin: 0 0 12px;
+      font-family: "Playfair Display", "Noto Serif Thai", serif;
+      font-size: 20px;
+    }
+
+    .projects-panel {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .control-group {
+      margin-bottom: 14px;
+    }
+
+    .control-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .input {
+      width: 100%;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      font-family: inherit;
+    }
+
+    .input:focus {
+      outline: 2px solid rgba(11, 110, 110, 0.2);
+      border-color: var(--accent);
+    }
+
+    .option-list {
+      display: grid;
+      gap: 8px;
+      max-height: 180px;
+      overflow: auto;
+      padding-right: 6px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .option input {
+      accent-color: var(--accent);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: #F2F6F6;
+      color: var(--accent);
+    }
+
+    .list-tools {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .btn.secondary {
+      background: #F3F4F6;
+      color: var(--ink);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .project-list {
+      display: grid;
+      gap: 10px;
+      overflow: auto;
+      padding-right: 6px;
+      max-height: 560px;
+    }
+
+    .project-row {
+      display: grid;
+      grid-template-columns: 28px 1fr 140px;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #FBFBFA;
+    }
+
+    .project-row.selected {
+      border-color: rgba(11, 110, 110, 0.4);
+      box-shadow: 0 6px 18px rgba(11, 110, 110, 0.08);
+    }
+
+    .project-title {
+      font-weight: 600;
+    }
+
+    .project-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .project-budget {
+      text-align: right;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .selected-panel {
+      margin-top: 20px;
+    }
+
+    .selected-list {
+      display: grid;
+      gap: 8px;
+      max-height: 240px;
+      overflow: auto;
+      padding-right: 6px;
+    }
+
+    .selected-item {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px dashed var(--line);
+      background: #FFF;
+      display: grid;
+      gap: 4px;
+    }
+
+    .source-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .source-chip {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #F6F1EB;
+      font-size: 12px;
+    }
+
+    .notice {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .project-row {
+        grid-template-columns: 28px 1fr;
+      }
+
+      .project-budget {
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-card">
+        <h1>เมนูคัดเลือกโครงการ</h1>
+        <p class="subtitle">เลือกจำนวนโครงการ งบรวม และแหล่งงบ เพื่อสรุปให้ผู้บริหารเห็นภาพโครงการตาม Service Plan
+          และเรือธง</p>
+        <div class="meta" id="meta-text">ข้อมูลอัปเดตจากไฟล์สรุปแผน</div>
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="label" title="นับจากโครงการที่ติ๊กเลือก">เลือกแล้ว</div>
+            <div class="value" id="stat-selected">0 โครงการ</div>
+            <div class="sub" id="stat-selected-sub">งบรวม 0 บาท</div>
+          </div>
+          <div class="stat">
+            <div class="label" title="นับเฉพาะโครงการที่ผ่านตัวกรองและการค้นหา">เข้าเงื่อนไขปัจจุบัน</div>
+            <div class="value" id="stat-filtered">0 โครงการ</div>
+            <div class="sub" id="stat-filtered-sub">งบรวม 0 บาท</div>
+          </div>
+        </div>
+        <div class="stat-help">
+          <div>เลือกแล้ว = จำนวนโครงการที่ติ๊กเลือกในรายการ</div>
+          <div>เข้าเงื่อนไขปัจจุบัน = จำนวนโครงการที่ผ่านตัวกรองด้านซ้ายและช่องค้นหา</div>
+        </div>
+        <div class="source-chips" id="source-totals"></div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel filters-panel">
+        <h2>ตัวกรอง</h2>
+
+        <div class="control-group">
+          <label>ประเภทโครงการ</label>
+          <div class="option-list" id="filter-types"></div>
+        </div>
+
+        <div class="control-group">
+          <label>Service Plan (สาขา)</label>
+          <div class="option-list" id="filter-sections"></div>
+        </div>
+
+        <div class="control-group">
+          <label>ทีมเรือธง</label>
+          <div class="option-list" id="filter-teams"></div>
+        </div>
+
+        <div class="control-group">
+          <label>แหล่งงบที่นับรวม</label>
+          <div class="option-list" id="filter-sources"></div>
+        </div>
+
+        <div class="control-group">
+          <label>ช่วงงบต่อโครงการ (บาท)</label>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <input id="min-budget" class="input" type="number" min="0" placeholder="ต่ำสุด" />
+            <input id="max-budget" class="input" type="number" min="0" placeholder="สูงสุด" />
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label for="search">ค้นหาโครงการ</label>
+          <input id="search" class="input" type="search" placeholder="พิมพ์ชื่อโครงการ" />
+        </div>
+
+        <div class="control-group">
+          <label for="sort">เรียงลำดับ</label>
+          <select id="sort" class="input">
+            <option value="budget-desc">งบรวมมาก → น้อย</option>
+            <option value="budget-asc">งบรวมน้อย → มาก</option>
+            <option value="name-asc">ชื่อโครงการ A → Z</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label class="option">
+            <input id="show-selected-only" type="checkbox" /> แสดงเฉพาะโครงการที่เลือก
+          </label>
+        </div>
+      </aside>
+
+
+
+      <section class="panel projects-panel">
+        <h2>รายการโครงการ</h2>
+        <div class="list-tools">
+          <button class="btn secondary" id="select-by-service-plan">เลือกทั้งหมดตาม Service Plan</button>
+          <button class="btn" id="select-all">เลือกทั้งหมดในผลลัพธ์</button>
+          <button class="btn secondary" id="clear-selected">ล้างที่เลือก</button>
+          <button class="btn ghost" id="reset-filters">รีเซ็ตตัวกรอง</button>
+          <span class="badge" id="result-count">0 รายการ</span>
+        </div>
+        <div class="notice project-note">ติ๊กเช็คบ็อกซ์เพื่อเลือกโครงการ รายการที่เลือกจะสรุปด้านล่าง</div>
+        <div class="project-list" id="project-list"></div>
+      </section>
+    </main>
+
+    <section class="panel selected-panel">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h2 style="margin:0;">สรุปโครงการที่เลือก</h2>
+        <div>
+          <button class="btn secondary" id="export-selected">ส่งออก Excel (CSV)</button>
+        </div>
+      </div>
+      <div class="selected-list" id="selected-list"></div>
+      <div class="notice">หมายเหตุ: งบรวมคำนวณจากแหล่งงบที่ถูกเลือกด้านซ้าย</div>
+    </section>
+  </div>
+
+  <script type="text/plain"
+    id="data-cso">project_id,section_id,project_name_th,budget_subsidy,budget_dev_hr,budget_dev_ops,budget_ppa,budget_med_dept,budget_other,remark,row_order
+1,1,โครงการสนับสนุนการใช้ยา TNK ( Tenecteplase ) ในผู้ป่วย Acute STEMI ในพื้นที่ห่างไกล,,,813600.0,,,,,8
+2,2,"โครงการคัดกรอง colonoscope สัญจร ตามเขตล้านนา 1, 2,3",,,526500.0,,,,,10
+3,2,การอบรมการพยาบาลผู้ป่วยมะเร็งที่ได้รับยาเคมีบำบัด (1 เดือน),,55000.0,,,,,,11
+4,2,การพยาบาลเฉพาะทางสาขาการพยาบาลผู้ป่วยมะเร็ง (4 เดือน),,62000.0,,,,,,12
+5,2,โครงการอบรมเชิงปฏิบัติการ หลักสูตร พัฒนาศักยภาพพยาบาลผู้ประสานงานโรคมะเร็งขั้นพื้นฐาน เขตสุขภาพที่ 1 (Basic Cancer Nurse Coordinator Program),,,,,250000.0,,กรมการแพทย์ รอเสนอลงนาม,13
+6,3,โครงการTrauma sharing day เขต 1 ครั้งที่ 1,,,50000.0,,,,,15
+7,3,โครงการอบรมเชิงปฏิบัติการพัฒนาศักยภาพผู้รับผิดชอบด้านข้อมูลตัวชี้วัด Trauma regristy เขตสุขภาพที่ 1,,,19500.0,,,,,16
+8,3,โครงการอบรมหลักสูตรการพยาบาลเวชปฏิบัติฉุกเฉิน,,,390000.0,,,,,17
+9,3,จัดอบรมหลักสูตรพัฒนาทีมปฏิบัติการฉุกเฉินทางการแพทย์ (ทีม MERT: medical emergency response team),,,1500000.0,,,,,18
+10,3,จัดอบรมหลักสูตร Flood Team  Flood medical response,,,200000.0,,,,,19
+11,3,โครงการจัดซื้ออุปกรณ์ MERT เขตสุขภาพที่ 1,,,5000000.0,,,,,20
+12,3,"อบรมการดูแลผู้ป่วยทางอากาศในผู้ป่วยวิกฤติ critical care air transport, ECMO transport, เด็กและทารกแรกเกิด",,,120000.0,,,,,21
+13,3,โครงการอบรมหลักสูตรฟื้นฟูการลำเลียงผู้ป่วยทางอากาศขั้นพื้นฐาน (Refresher Basic Helicopter EMS),60000.0,,,,,,"ผ่านการพิจารณาจาก บค. 
+แจ้งสาขาดำเนินการเขียนโครงการ",22
+14,4,โครงการประชุมเชิงปฏิบัติการ การดูแลทารกแรกเกิด การส่งต่อทารกแรกเกิดอย่างปลอด และการกู้ชีพทารกแรกเกิด (NCPR) เขตสุขภาพที่ 1,,,145400.0,,,,,24
+15,4,หลักสูตรอบรมการพยาบาลเฉพาะทางสาขาการพยาบาลเวชปฏิบัติวิกฤติทารกแรกเกิด (NNP) มหาวิทยาลัยเชียงใหม่,,300000.0,,,,,,25
+16,5,โครงการพัฒนาบริการจิตบำบัดแบบประคับประคอง (Supportive psychotherapy)  สำหรับนักจิตวิทยา/นักจิตวิทยาคลินิก เขตสุขภาพที่ 1,,,466250.0,,,,,27
+17,5,โครงการอบรมเชิงปฏิบัติการเพื่อพัฒนาศักยภาพด้านการบำบัดผู้มีปัญหาการเสพติด สำหรับนักจิตวิทยาเขตสุขภาพที่ 1 (สอดคล้องกับโครงการ Service plan ด้านพัฒนาตำแหน่งและสมรถนะ HR ด้านจิตเวช ปี2569),,,380620.0,,,,,28
+18,5,โครงการจัดหาและอบรมการใช้แบบทดสอบทางจิตวิทยามาตรฐาน (Core Test Bank for Health Region 1) (สอดคล้องกับโครงการ Service plan ด้านพัฒนาตำแหน่งและสมรถนะ HR ด้านจิตเวช ปี2569),,,609880.0,,,,,29
+19,5,โครงการ Mental Health Hero (อสม.นักจิต/นักส่งเสริมจิตชุมชน),,,900000.0,,,,ซ้ำโครงการเรือธง,30
+20,5,"โครงการอบรมเชิงปฏิบัติการพัฒนาทักษะการคัดกรองผู้ป่วยจิตเวชที่มีความเสี่ยงสูงต่อการก่อความรุนแรง
+(V Care, V Scan)",,,500000.0,,,,,31
+21,5,"โครงการ ""จิตอาสาเยี่ยมบ้าน-เสริมแรงกลุ่มเสี่ยงซ้ำ""",,,,,,,,32
+22,5,โครงการสร้างระบบติดตามและ Dashboard เขต 1 ด้านสุขภาพจิต,,,100000.0,,,,ซ้ำโครงการเรือธง,33
+23,5,"โครงการ ""การพัฒนาระบบการติดตามผู้ป่วยจิตเวชกลุ่ม SMI-V""",,,,,,,,34
+24,5,"โครงการ ""พัฒนาทักษะผู้เลี้ยงดูเด็กปฐมวัยไทยเขตสุขภาพที่ 1""",,,1051000.0,,,,,35
+25,5,โครงการอบรมหลักสูตรระยะสั้นแพทย์เวชศาสตร์ป้องกันสุขภาพจิตชุมชน ประจำปีงบประะมาณ 2569,,,500000.0,,,,,36
+26,5,โครงการอบรมหลักสูตรการพยาบาลเฉพาะทาง สาขาการพยาบาลสุขภาพจิตและจิตเวช รุ่น 29,,,750000.0,,,,,37
+27,5,โครงการอบรมหลักสูตรการฝึกอบรมระยะสั้นการบริบาลทางเภสัชกรรมเฉพาะทาง สาขาจิตเวช ปีงบประมาณ 2569,,,600000.0,,,,,38
+28,5,โครงการติดตามดูแลและเสริมสร้างความปลอดภัยทางสุขภาพจิตในกลุ่มเสี่ยงสูงในชุมชน เขตสุขภาพที่ 1 ปีงบประมาณ 2569,,,,500000.0,,,อยู่ระหว่างเสนอโครงการ,39
+29,6,จัดทำโปสเตอร์แสดงระดับความรุนแรงของโรคอายุรกรรมกับการตั้งครรภ์,,,32500.0,,,,,41
+30,6,โครงการอบรมเชิงปฏิบัติการพัฒนาศักยภาพ บุคลากรแพทย์และพยาบาลสาขาแม่และเด็ก เขต สุขภาพที่ 1 ประจ ำปี 2569,,,249800.0,,,,,42
+31,6,โครงการ ANC @ Home โดยการมีส่วนร่วมของพี่เลี้ยง  ปี 2569,,,342400.0,,,,,43
+32,6,โครงการคัดกรองพัฒนาการเด็ก วัย 0-5 ปีในกลุ่มเด็กเสี่ยง ที่มีประวัติคลอด LBW และ/หรือ Birth asphyxia เขตสุขภาพที่ 1,,,240000.0,,,,,44
+33,6,โครงการอบรมหลักสูตรพยาบาลเแพาะทาง สาขาการผดุงครรภ์ในภาวะเสี่ยงสูงและภาวะวิกฤต,,120000.0,,,,,,45
+34,6,โครงการอบรมหลักสูตรการพยาบาลเฉพาะทาง สาขาการผดุงครรภ์,,300000.0,,,,,,46
+35,6,โครงการอบรมพัฒนาศักยภาพแพทย์ พยาบาล และบุคลากรที่ปฏิบัติงานด้านอนามัยด้านแม่และเด็ก (ป้องกันมารดาตาย คลอดก่อนกำหนด ทารกแรกเกิด และพัฒนาการเด็ก),,,300000.0,,,,,47
+36,7,ประชุมเชิงปฏิบัติการพัฒนาศักยภาพทีมพี่เลี้ยงและทีมประเมินคุณภาพมาตรฐานบริการสุขภาพปฐมภูมิ เขตสุขภาพที่ 1,104400.0,,,,,,ได้รับอนุมัติเเล้ว ปี 2568 ขยายดำเนินการถึง สิงหาคม 2569,49
+37,7,"อบรมหลักสูตรพื้นฐานเวชศาสตร์ครอบครัวสำหรับแพทย์ปฐมภูมิ
+ (Basic Course of Family Medicine for Primary Care Doctor)",,,,,,52800.0,(งบกสป.),50
+38,7,โครงการอบรมหลักสูตร System-based practice and community-oriented medicine,,,,,,123750.0,(งบกสป.),51
+39,7,"โครงการ พัฒนาศูนย์การเรียนรู้ด้านเวชศาสตร์ครอบครัวและพัฒนา
+ระบบปฐมภูมิเขตสุขภาพที่ 1",,,,,,300000.0,(งบกสป.),52
+40,7,ประชุมเชิงปฏิบัติการสรุปผลการดำเนินงานและถอดบทเรียนการทำงานปี 2569,,,,,,100000.0,(งบกสป.),53
+41,7,ประชุมคณะทำงานพัฒนาระบบบริการสาขาระบบบริการปฐมภูมิและสุขภาพอำเภอ เพื่อกำกับติดตาม (Online),,,,,,,ไม่ใช้งบประมาณ,54
+42,8,อบรมหลักสูตรผู้ช่วยทันตแพทย์ Online (สถาบันหลัก รพ.เชียงรายประชานุเคราะห์ รพ.นครพิงค์ รพ.ลำปาง),,1000000.0,,,,,,56
+43,8,การพัฒนานักวิชาการส่งเสริมสุขภาพช่องปากผู้สูงอายุ,,280000.0,,,,,,57
+44,8,โครงการอบรมหลักสูตรการใช้ปัญญาประดิษฐ์ (AI) สำหรับช่วยทำงานวิจัยทางวิชาการ,,52500.0,,,,,,58
+45,8,โครงการอบรมพัฒนาศักยภาพทันตแพทย์ผู้รับผิดชอบงานทันตกรรมปฐมภูมิ เพื่อดูแลลรักษาผู้ป่วยที่มีความต้องการพิเศษทุกกลุ่มวัย,,65000.0,,,,,,59
+46,8,โครงการฝึกอบรมเชิงปฏิบัติการระยะสั้น 4 เดือน หัวข้อ ทันตกรรมสำหรับผู้ป่วยสูงอายุและผู้ใหญ่ที่มีความต้องการพิเศษตามแนวคิดบริการปฐมภูมิ,,175000.0,,,,,,60
+47,8,โครงการศึกษาต่อเนื่องสาขาทันตกรรมประดิษฐ์ (4 เดือน),,120000.0,,,,,,61
+48,8,ทันตกรรมผู้สูงอายุ,,100000.0,,,,,,62
+49,8,โครงการอบรมระยะสั้น (สาขาทันตกรรมผู้สูงอายุ),,40000.0,,,,,,63
+50,8,หลักสูตรการฝึกอบรมทันตกรรมผู้สูงอายุ สาขาเวชศาสตร์ช่องปาก ระยะสั้น 4 เดือน เรื่องการจัดการดูแล และการรักษาผู้ป่วยสูงอายุที่มีรอยโรคช่องปากพบบ่อย,,130000.0,,,,,,64
+51,8,อบรมระยะสั้น 4 เดือน สาชาเวชศาสตร์ช่องปาก,,60000.0,,,,,,65
+52,8,หลักสูตรอบรมทันตกรรมรากฟันเทียม สำหรับทันตกรรม,,360000.0,,,,,,66
+53,8,ประชุมแลกเปลี่ยนเรียนรู้ One Province One Dental Hospital เขตสุขภาพที่ 1,,,87800.0,,,,,67
+54,8,"โครงการอบรมพัฒนาผู้เยี่ยมสำรวจเพื่อพัฒนาคุณภาพและความปลอดภัยบริการทันตกรรมเขตสุขภาพที่ 1 (Thai Dental Clinic Accreditation Standard 2024 (TDCA) Surveyor
+Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระหว่างส่งกรมการแพทย์ตรวจสอบ,68
+55,9,โครงการอบรมพัฒนาศักยภาพเชิงบูรณาการสำหรับพยาบาลผู้ดูแลผู้ป่วยล้างไตทางช่องท้อง ในเขตสุขภาพที่ 1,80000.0,,,,,,"ผ่านการพิจารณาจาก บค. 
+แจ้งสาขาดำเนินการเขียนโครงการ",70
+56,9,โครงการขับเคลื่อนอำเภอสุขภาพดี ส่งเสริมป้องกัน รอบรู้เท่าทัน โรคไตเรื้อรัง อย่างยั่งยืน (ปีที่ 2) Lanna Healthy Package Model Phase 2,,,3398150.0,,,,,71
+57,9,"โครงการพัฒนาศักยภาพบุคลากรสุขภาพรองรับ Service plan ปีงบประมาณ พ.ศ. 2569 (งบอุดหนุน)
+-หลักสูตรอายุรศาสตร์โรคไต จำนวน 2 คน
+-หลักสูตรการพยาบาลเฉพาะทางสาขาการพยาบาลเวชปฏิบัติการบำบัดทดแทนไต จำนวน 30 คน 
+-หลักสูตรการพยาบาลเฉพาะทาง สาขาการจัดการโรคเรื้อรัง จำนวน 2 คน",,,4094500.0,,,,,72
+58,10,โครงการพัฒนาระบบคัดกรอง ค้นหา และรักษาผู้ป่วยโรคตาที่ป้องกันตาบอดได้ (ต้อกระจก/เบาหวานขึ้นจอประสาทตา) แบบบูรณาการ    (Mobile cararact / SMC- Cataract ),,,,,,,ไม่ใช้งบประมาณ,74
+59,11,"อบรมบุคลากร
+ - Soft Skill
+ - Motivation
+ - Coaching",,,500000.0,,,,,76
+60,11,อบรมบุคลากรในการใช้และบันทึก แพลตฟอร์มร่วมกันในภาพเขตสุขภาพ,,,600000.0,,,,,77
+61,11,ประชุมเชิงปฏิบัติการพัฒนาศักยภาพ SMART NCDs System Manager เขตสุขภาพที่ 1,,,,,,298350.0,(งบ สคร.),78
+62,11,เวทีแลกเปลี่ยนเรียนรู้การดำเนินงานการปรับเปลี่ยนพฤติกรรม,,,600000.0,,,,,79
+63,11,ประชุมคณะกรรมการ Service plan NCDs ระดับเขต,,,40000.0,,,,,80
+64,11,การประชุมเชิงปฏิบัติการ HL – LM in NCD remission เขตสุขภาพที่ 1,,,1637000.0,,,,,81
+65,11,โครงการปรับเปลี่ยนพฤติกรรมสุขภาพ เพื่อลดโรคเบาหวานและโรคความดันโลหิตสูง เขตสุขภาพที่ 1,,,,5615332.0,,,"เงินโอนให้จังหวัดเรียบร้อยแล้ว
+อยู่ระหว่างดำเนินการ",82
+66,12,อบรมพยาบาลหลักสูตรให้บริการจัดเก็บดวงตาของผู้บริจาคอวัยวะ (หลักสูตร 5 วัน),,148500.0,,,,,,84
+67,12,โครงการกิจกรรมส่งเสริมความรู้เรื่องการบริจาคอวัยวะ/ดวงตา แก่นักศึกษาคณะพยาบาลศาสตร์ มหาวิทยาลัยราชภัฎเชียงราย/วิทยาลัยเชียงราย,,,124800.0,,,,,85
+68,12,อบรมหลักสูตรสาขาการพยาบาลการบริจาคอวัยวะเนื้อเยื่อและการปลูกถ่ายอวัยวะ,,85000.0,,,,,,86
+69,12,โครงการอบรมเชิงปฏิบัติการการพัฒนาเครือข่ายการรับบริจาคอวัยวะสมองตายในเขตสุขภาพที่ 1 ประจำปีงบประมาณ 2569,,,,,164000.0,,"โครงการอนุมัติเรียบร้อยแล้ว
+อยู่ระหว่างดำเนินโครงการ",87
+70,12,โครงการขอใช้เงินงบประมาณเขต เพื่อการสนับสนุนการปลูกถ่ายไต ประจำปีงบประมาณ 2569,,,542500.0,,,,,88
+71,13,โครงการกิจกรรมเวทีแลกเปลี่ยนเรียนรู้ KM 8 จังหวัด เขตสุขภาพที่ 1,,,49000.0,,,,,90
+72,13,อบรมหลักสูตรเฉพาะทางพยาบาลฟื้นฟูน 4 เดือน,,270000.0,,,,,,91
+73,13,อบรมหลักสูตรเฉพาะทางนักกายภาพบำบัด 4 เดือน,,250000.0,,,,,,92
+74,13,โครงการจัดทำแนวทางเวชปฏิบัติ (CPG) การประชุมเชิงปฏิบัติการจัดทำแนวทางการดูแลผู้ป่วยระยะกลาง (Intermediate Care: IMC) เพื่อเพิ่มคุณภาพชีวิตและลดอัตราการตายในกลุ่มผู้ป่วย เขตสุขภาพที่ 1 โดยสหสาขาวิชาชีพ,,,,,120000.0,,อยู่ระหว่างส่งกรมการแพทย์ตรวจสอบ,93
+75,14,โครงการแลกเปลี่ยนเรียนรู้หารขับเคลื่อน RLU Hospital เขตสุขภาพที่ 1 ประจำปีงบประมาณ 2569,,,66450.0,,,,ซ้ำเรือธง,95
+76,14,โครงการแลกเปลี่ยนเรียนรู้ จากโรงพยาบาลต้นแบบ RDU Province / พัฒนาทีม RDU Coordinator ในประเด็นสร้างความรอบรู้ เรื่อง CKD /NCD/Sepsis แก่ประชาชน,,,,,,100000.0,(งบ อ.ย.),96
+77,14,โครงการแลกเปลี่ยนเรียนรู้ เรื่อง การจัดการการดื้อยาต้านจุลชีพอย่างบูรณาการ โดยทีม AMR เขต 5 (แพทย์ พยาบาล IC เภสัชกร)และผู้เชี่ยวชาญ จัดเป็นกิจกรรมอบรมวิชาการแลกเปลี่ยนเรียนรู้การดำเนินงาน รพ ระดับ A S M1 125 คน,,,84975.0,,,,ซ้ำเรือธง,97
+78,14,"โครงการพัฒนาศักยภาพของเภสัชกร AMR เขต 1 (ส่งเภสัชกรเรียนหลักสูตร AMR 4 เดือน 2 คน งบประมาณ 80,000 บาท)",,,80000.0,,,,ซ้ำเรือธง,98
+79,14,โครงการอบรมหลักสูตรการฝึกอบรมระยะสั้นการบริบาลทางเภสัชกรรมเฉพาะทาง สาขาโรคติดเชื้อและยาต้านจุลชีพปีงบประมาณ 2569,,,400000.0,,,,,99
+80,15,"หลักสูตรการพยาบาลเฉพาะทาง สาขาการจัดการการพยาบาลสำหรับผู้ป่วยที่ได้รับการผ่าตัดแบบวันเดียวกลับและการผ่าตัดแผลเล็ก
+ Program of Nursing Specialty in Nursing Case Management for One Day Surgery/Minimally Invasive Surgery",,55500.0,,,,,,101
+81,15,อบรมเฉพาะทาง ERCP,,90000.0,,,,,,102
+82,15,การพยาบาลเฉพาะทางสาขาการพยาบาลศัลยกรรม อุบัติเหตุ,,85000.0,,,,,,103
+83,15,การพยาบาลเฉพาะทางสาขาการพยาบาลผู้ป่วยโรคติดเชื้อและการควบคุมการติดเชื้อ,,95000.0,,,,,,104
+84,15,อบรมระยะสั้น ET Nurse,,41000.0,,,,,,105
+85,16,โครงการแลกเปลี่ยนเรียนรู้และขับเคลื่อนระบบการดูแลผู้ป่วยภาวะติดเชื้อในกระแสเลือดและระบบการจัดการภาวะวิกฤตอายุรกรรมตั้งแต่ระยะแรกแบบเข้มข้น (Intensive training course in sepsis and RRS)เครือข่ายเขตสุขภาพที่ 1 ประจำปีงบประมาณ พ.ศ.2569,,,80000.0,,,,,107
+86,17,โครงการเฝ้าระวังการป้องกันการพลัดตกหกล้มกระดูกหักในผู้สูงอายุกลุ่มเสี่ยงและการป้องกันการหักซ้ำ จังหวัดแพร่,,,142400.0,,,,,109
+87,17,การพยาบาลเฉพาะทางสาขาการพยาบาลศัลยกรรมออร์โธปิดิกส์,,,,,,45000.0,ใช้งบเงินบำรุงโรงพยาบาล,110
+88,18,ประชุมวิชาการแพทย์แผนไทยและการแพทย์ทางเลือก เขตสุขภาพที่ 1,,,150000.0,,,,,112
+89,18,ประกวดผลงานวิจัย ด้านการแพทย์แผนไทยและการแพทย์ทางเลือก ระดับเขตสุขภาพที่ 1 สู่ระดับประเทศ (พื้นที่ต้นแบบหมอไทย ชมรมผู้สูงอายุ),,,130000.0,,,,,113
+90,18,จัดทำสื่อสนับสนุนการใช้ยาสมุนไพรทดแทน สำหรับผู้สั่งจ่ายยาสมุนไพรในสถานพยาบาลทุกระดับ,,,37000.0,,,,,114
+91,18,พัฒนาศักยภาพบุคลากรเภสัชกรและบุคลากรโรงงานผลิตยาสมุนไพรและกัญชาทางการแพทย์ เขตสุขภาพที่ 1,,,,,,305000.0,"งบ SP สาขาแพทย์แผนไทยฯ
+ (SPของประเทศ)",115
+92,18,อบรมการบันทึกข้อมูลเพื่อประสิทธิภาพการเรียกเก็บบริการทางการแพทย์แผนไทย ในสถานพยาบาลทุกระดับ,,,,,,,"""งบกองทุนภูมิปัญญาของแต่ละจังหวัด""",116
+93,18,กิจกรรมประชุม แลกเปลี่ยนเรียนรู้ คณะกรรมการและคณะทำงาน ทีม Service plan สาขาการแพทย์แผนไทยและการแพทย์ผสมผสานและสาขากัญชาทางการแพทย์ เขตสุขภาพที่ 1,,,100000.0,,,,,117
+94,18,กิจกรรมพัฒนาแผนธุรกิจโรงงานผลิตยาสมุนไพรเขตสุขภาพที่ 1,,,98000.0,,,,,118
+95,18,พัฒนาศักยภาพบุคลากรโรงงานผลิตยาสมุนไพร และกัญชาทางการแพทย์ เขตสุขภาพที่ 1,70730.0,,,,,,,119
+96,19,โครงการเครือข่าย Hospice Community บ้าน-วัด-โรงพยาบาล (สร้างต้นแบบจังหวัดละ ≥ 1 เครือข่าย,,,40000.0,,,,,121
+97,19,โครงการพัฒนามาตรฐานสถานชีวาภิบาล (Hospice Accreditation) (ประเมินคุณภาพตาม GDI และ QODD),,,32000.0,,,,,122
+98,19,หลักสูตรเพื่อประกาศนียบัตรวิชาชีพเวชกรรมด้านเวชศาสตร์ครอบครัวผู้สูงอายุ,,280000.0,,,,,,123
+99,19,หลักสูตรการพยาบาลเวชปฏิบัติผู้สูงอายุ(4เดือน),,440000.0,,,,,,124
+100,21,"การประชุมเชิงปฏิบัติการเพื่อฟื้นฟูและเพิ่มพูนความรู้ตามหลักสูตรการพัฒนาศักยภาพบุคลากรวัณโรคสำหรับผู้ปฏิบัติงานเดิม
+ (TB Clinic Refresher Course)
+ - Refresh องค์ความรู้วัณโรค
+ - Refresh โปรแกรม NTIP",,,500000.0,,,,,128
+101,21,โครงการประชุมเชิงปฏิบัติการพัฒนาศักยภาพบุคลากรและการบริหารจัดการวัณโรคดื้อยา M/XDR-TB ระดับเขต,160000.0,,,,,,"ผ่านการพิจารณาจาก บค. 
+แจ้งสาขาดำเนินการเขียนโครงการ",129
+102,21,โครงการตรวจคัดกรองวัณโรคในผู้ป่วยติดบ้านติดเตียงที่มีภาวะทุพโภชนาการและผู้สูงอายุ (การตรวจเสมหะด้วยวิธี RT-PCR เพื่อการค้นพบผู้ป่วยวัณโรคเชิงรุก : PPA),,,,499680.0,,,อยู่ระหว่างเสนอลงนามโครงการ,130
+103,22,"- โครงการอบรมบุคลากรทางการแพทย์ อสม. เจ้าหน้าที่ รพสดพระภิกษุ เยาวชน ผู้นำอุมชน และพาคีเครือข่ายชุมชน
+- ร่วมกับทางจังหวัดจัดโครงการแสงนำใจครั้งที่ 12
+- จัดงานวัน Word Stroke Day ทุกรพ. และรพ.สต.",,,,,,,,132
+104,22,การประชุมเชิงปฏิบัติการพัฒนาคุณภาพการดูแลรักษาโรคหลอดเลือดสมองตีบอุดตันระยะเฉียบพลัน และการจัดตั้งหอผู้ป่วยโรคหลอดเลือดสมอง เขตสุขภาพที่ 1,,,,,103800.0,,"การมการแพทย์ตรวจสอบแล้ว
+อยู่ระหว่างปรับแก้ไขโครงการ",133
+105,22,Thrombectomy Anywhere Health Region 1,,,12726000.0,,,,,134
+106,22,โครงการให้ความรู้เรื่องโรคหลอดเลือดสมองแก่เครือข่าย เขตสุขภาพที่ 1 ประจำปีงบประมาณ 2569,,,,,44300.0,,อยู่ระหว่างส่งกรมการแพทย์ตรวจสอบ,135
+107,22,เพิ่มปริมาณเตียง Stroke unit  พัฒนารพ.เครือข่ายผ่านการรับรองมาตราฐาน Stroke unit,,,13357500.0,,,,,136
+108,23,โครงการโปรแกรมสำหรับ Tracking Severe TBI เพื่อพัฒนาระบบการดูแลผู้ป่วยบาดเจ็บสมองรุนแรง,,,300000.0,,,,,138
+109,23,โครงการอบรมระยสั้น Neuro sx. สำหรับแม่ฮ่องสอนและพื้นที่ ที่ไม่มี Nuero sx. โดยความร่วมมือกับคณะแพทยศาสตร์ มหาวิทยาลัยเชียงใหม่,,,,,,,ไม่ใช้งบประมาณ,139
+110,23,"โครงการอบรมพัฒนาศักยภาพการดูแลผู้ป่วยระบบประสาทสำหรับแพทย์และพยาบาลแยกตามล้านนา 1,2,3",,,100000.0,,,,,140
+111,23,"งานนิเทศงาน Service Plan ล้านนนา 1,2,3",,,300000.0,,,,,141
+112,24,โครงการติดตามผู้ป่วยที่ผ่านการคัดกรอง ณ โรงเรียนโสตศึกษาอนุสารสุนทร เชียงใหม่,,,101250.0,,,,,143
+113,24,"โครงการ ""ของขวัญวันแม่ 2569 ได้ยินรักแม่""",,,1776700.0,,,,,144
+114,24,โครงการ CA H&N Early staging Pathway,,,,,,,,145
+115,24,โครงการคืนเสียงสู่โสต,,,224600.0,,,,,146
+116,24,โครงการคัดกรองการได้ยินผู้สูงอายุสัญจร,,,203600.0,,,,,147
+117,25,โครงการส่งเสริมความรู้เรื่องMalignant hyperthermia ในเขตสุขภาพที่ 1 ร่วมกับ มหาวิทยาลัยเชียงใหม่ และราชวิทยาลัยวิสัญญี,,,150000.0,,,,,149
+118,27,"โครงการส่งเสริมห้องปลอดฝุ่นหรือมุ้งสู้ฝุ่นกลุ่มผู้ป่วยติดเตียง
+-จัดทำฐานข้อมูลห้องปลอดฝุ่นหรือมุ้งสู้ฝุ่นกลุ่มผู้ป่วยติดเตียง
+-ส่งเสริมการจัดทำห้องปลอดฝุ่นหรือมุ้งสู้ฝุ่นกลุ่มผู้ป่วยติดเตียงของท้องถิ่นโดยมีแผนการใช้กองทุนสุขภาพท้องถิ่นหรือแผนการขอรับสนับสนุนจากหน่วยงานที่เกี่ยว
+-ติดตาม ประเมินผล",,,,,,,,152
+119,27,"โครงการส่งเสริมการพัฒนา รพ.คาร์บอนต่ำ เขตสุขภาพที่ 1
+- สร้างความรู้ความเข้าใจการดำเนินงานรพ.คาร์บอนต่ำให้กับโรงพยาบาล
+-โรงพยาบาลจัดทำแผนรพ.คาร์บอนต่ำ
+-โรงพยาบาลดำเนินการตามแผน รพ.คาร์บอนต่ำ
+-โรงพยาบาลสมัครประเมินรพ.คาร์บอนต่ำ
+-ติดตาม ประเมินผล",,,,,,,,153
+120,28,โครงการการเข้าถึงยาขยายหลอดลมชนิดออกฤทธิ์ยาวแบบ 2 ชนิด กลุ่ม LABA/LAMA เพื่อลดความรุนแรงและการชะลอการ Admit ในผู้ป่วยโรคปอดอุดกั้นเรื้อรัง,,,,,,,ไม่ใช้งบประมาณ,155
+121,28,โครงการพัฒนาความรู้และศักยภาพสำหรับบุคลากรทางการเเพทย์ในการดูเเลผู้ป่วยโรคปอดอุดกั้นเรื้อรัง (COPD) เขตสุขภาพที่ 1,,,,,,,ไม่ใช้งบประมาณ,156
+122,32,โครงการประชุมเชิงปฏิบัติการพัฒนาศักยภาพนักโภชนาการ โภชนากร นักกำหนดอาหารในการคัดกรองและประเมินภาวะโภชนาการผู้ป่วยขณะนอนพักรักษาตัวในโรงพยาบาล,,,99000.0,,,,,163</script>
+  <script type="text/plain" id="data-sections">section_id,plan_id,section_name_th
+1,1,สาขาโรคหัวใจ
+2,1,สาขาโรคมะเร็ง
+3,1,สาขาอุบัติและฉุกเฉิน
+4,1,สาขาทารกเกิดและเด็ก
+5,1,สาขาสุขภาพจิตและสารเสพติด
+6,1,สาขาสูติ นรีเวชกรรม
+7,1,สาขาระบบบริการปฐมภูมิและสุขภาพอำเภอ
+8,1,สาขาสุขภาพช่องปาก
+9,1,สาขาไต
+10,1,สาขาตา
+11,1,สาขาโรคไม่ติดต่อ
+12,1,สาขาการบริจาคและปลูกถ่ายอวัยวะ
+13,1,สาขาการดูแลระยะเปลี่ยนผ่านผู้ป่วยกึ่งเฉียบพลัน
+14,1,สาขาการตรวจทางปฏิบัติการอย่างสมเหตุผล และการพัฒนาระบบบริการเพื่อใช้ยาอย่างสมเหตุ และการจัดการดื้อย้านจุลชีพ
+15,1,สาขาศัลยกรรม
+16,1,สาขาอายุรกรรม
+17,1,สาขาออร์โธปิดิกส์
+18,1,สาขาการแพทย์แผนไทยและการแพทย์ผสมผสาน
+19,1,สาขาชีวาภิบาล
+20,1,สาขาระบบทางเดินปัสสาวะ
+21,1,สาขาวัณโรค
+22,1,สาขาหลอดเลือดสมอง
+23,1,สาขาศัลยกรรมระบบประสาท
+24,1,สาขาโสต ศอ นาสิก
+25,1,สาขาวิสัญญี
+26,1,ประเด็นสำคัญ
+27,1,ประเด็น PM 2.5
+28,1,ประเด็น โรค COPD
+29,1,ประเด็นอื่นๆ
+30,1,ประเด็นนิติเวช
+31,1,ประเด็นเภสัชกรรม
+32,1,ประเด็นสายวิชาชีพโภชนาการ</script>
+  <script type="text/plain" id="data-header">plan_id,plan_year,plan_region,plan_type,source_file,update_as_of,owner
+1,2569,เขตสุขภาพที่ 1,CSO,สรุปแผนรวม(up 04.02.69).xlsx,2025-02-04,เขตสุขภาพที่ 1
+2,2569,เขตสุขภาพที่ 1,Flagship,สรุปแผนรวม(up 04.02.69).xlsx,2025-02-04,เขตสุขภาพที่ 1</script>
+  <script type="text/plain"
+    id="data-flagship">flagship_id,team_id,project_name_th,strategic_objective,estimated_budget_amount,estimated_budget_text,row_order
+1,1,P1 : โครงการพัฒนาระบบสารสนเทศเขตสุขภาพที่ 1,สร้างระบบฐานข้อมูลสุขภาพเขตสุขภาพที่ 1 ให้เป็นศูนย์กลางข้อมูลเดียว (Single Data Center) ที่ยั่งยืนและพึ่งพาตนเองได้,500000.0,,2
+2,1,P2 : การยกระดับความมั่นคงปลอดภัยไซเบอร์และพัฒนาเทคโนโลยีดิจิทัล เขตสุขภาพที่ 1,สร้างความยั่งยืนและการพึ่งพาตนเอง (Self-reliance) ในการเฝ้าระวังความมั่นคงปลอดภัยไซเบอร์,1000000.0,,3
+3,2,เส้นทางท่องเที่ยวสุขภาวะล้านนา (Wellness Route),สร้างภาพจำและดึงรายได้ High-Value Medical & Wellness / เชื่อมโยงสถานประกอบการเป็นเส้นทางที่ขายได้จริง,2800000.0,,5
+4,3,โครงการพัฒนาระบบคัดกรองและดูแลภาวะโภชนาการผู้ป่วยในแบบครบวงจร (Integrated Nutrition Care Process for IPD),ยกระดับระบบคัดกรองและโภชนบำบัดในผู้ป่วยในให้เป็นมาตรฐานเดียวทั้งเขต เพื่อลดอุบัติการณ์ภาวะทุพโภชนาการรุนแรง,99000.0,,7
+5,4,โครงการส่งเสริมการพัฒนาโรงพยาบาลคาร์บอนต่ำ เขตสุขภาพที่ 1,การประเมินสิ่งแวดล้อมของโรงพยาบาลตามเกณฑ์มาตรฐาน Green & Clean Hospital Challenge (GCHC) มีการประเมินเกณฑ์มาตรฐาน โดยส่วนใหญ่โรงพยาบาลจะผ่านเกณฑ์มาตรฐาน แต่ในระดับ Challenge จะผ่านในบางแห่งเท่านั้น และมักจะผ่านในด้านอื่นๆ ในส่วนของด้านที่ผ่านยากที่สุด คือ การพัฒนาโรงพยาบาลคาร์บอนต่ำและเท่าทันการเปลี่ยนแปลงสภาพภูมิอากาศ (Low Carbon and Climate Resilient Health Care) ซึ่งเป็นประเด็นที่เกิดประโยชน์ต่อทั้งรพ.และทางเศรษฐกิจ สามารถสร้างรายได้จากการขายคาร์บอนเครดิต และเป็นที่ยอมรับในระดับสากล,20000.0,,9
+6,5,"P1 : โครงการกํากับ ติดตาม สอบทานระบบการบริหารจัดการด้านการเงินการคลังหน่วยบริการในเขตสุขภาพที่ 1 (407,160)",กำหนดกลยุทธ์เข้าช่วยเหลือหน่วยงานที่ประสบปัญหาวิกฤตทางการเงิน (Planfin) และเพิ่มประสิทธิภาพการเรียกเก็บ (Revenue Cycle Management),407160.0,,11
+7,5,"P2 : โครงการประชุมเชิงปฏิบัติการพัฒนาระบบบริหารจัดการลูกหนี้ของหน่วยบริการในเขตสุขภาพที่ 1 (346,200)",,346200.0,,12
+8,6,Cognition & Fall Screening and Intervention,"เชื่อมโยงการดูแลอย่างต่อเนื่อง สร้างศูนย์ระดับอำเภอ (Care Pathway) เพื่อพัฒนาระบบคัดกรองและป้องกันในผู้สูงอายุบางกลุ่ม
+ครอบคลุมผู้สูงอายุติดบ้าน การดูแลต่อเนื่องภาวะหลงลืม และการป้องกันการพลัดตกหกล้มในผู้สูงอายุโดยเชื่อมโยงการดูแลระดับชุมชนกับโรงพยาบาลสำหรับกลุ่มผู้สูงอายุติดสังคมและกลุ่มเสี่ยงที่ไม่สามารถเข้าถึงการคัดกรองในหน่วยบริการรวมถึงการเสริมศักยภาพบุคลากรระดับปฐมภูมิ",3500000.0,,14
+9,7,P1: โครงการค้นหากลุ่มเสี่ยงเชิงชิรุกรุ ระดับชุมชนโดย Mental Health Hero,ลดอัตราการฆ่าตัวตายให้ต่ำกว่าเกณฑ์อย่างยั่งยืนโดยเปลี่ยนระบบจากเชิงรับเป็นเชิงรุก (early detection + continuity + equitable access) พร้อมยกระดับคุณภาพข้อมูลการพยายามฆ่าตัวตาย (Attempt),900000.0,,16
+10,7,P2: โครงการพัฒนาระบบติดตามดูแลต่อเนื่องและ Dashboard เขตสุขภาพที่ 1 ด้านสุขภาพจิต,เน้นการสั่งการในการติดตามข้อมูลผู้ป่วยกำลังจะขาดนัด และขาดนัด ในระดับจังหวัด สั่งการไปที่อำเภอ,100000.0,,17
+11,8,P1: เพิ่มจำนวน Health ID เชิงรุก,"เพิ่มจำนวน Health ID แม่และเด็ก ,คนไข้ IPD",,งบ P4P รพศ/รพท,19
+12,8,P2: การให้บริการ Telemedicine โดยบุคลากรที่ไม่ใช่แพทย์,"จัดบริการในช่วง
+ขั้นตอนที่ไม่เกี่ยวกับ แพทย์เพื่อลดอัตรา มารอในโรงพยาบาล",,งบ P4P รพศ/รพท,20
+13,9,P1 : โครงการ Kick-off เพื่อยกระดับการพัฒนาสู่ Advanced RLU ระดับเขตสุขภาพ,ทีมนำรับทราบแนวคิด ทิศทาง และกรอบการพัฒนา สร้างความร่วมมือระดับเขตสุขภาพ นำไปสู่การออกแบบการพัฒนาระดับโรงพยาบาล,66450.0,,22
+14,9,P2 : โครงการ RLU Roadshow,ขยายเครือข่ายนอก สป. เพื่อยกระดับการพัฒนา RLU,,ไม่ใช้งบประมาณ,23
+15,9,P3 : โครงการพัฒนาระบบฐานข้อมูลและ Dashboard,"มีการส่งข้อมูลที่ถูกต้อง แม่นยำ ,มีช่องทางติดตามข้อมูลแบบ Real-time",,ไม่ใช้งบประมาณ,24
+16,9,P4 : โครงการพัฒนาศักยภาพ RLU Surveyors ของแต่ละโรงพยาบาล ประจำปีงบประมาณ 2569,"เข้าใจเครื่องมือเชิงคุณภาพ ,สามารถกระตุ้นการพัฒนาและมองเห็นโอกาสยกระดับศักยภาพของโรงพยาบาล",,ไม่ใช้งบประมาณ,25
+17,9,P5 : โครงการถอดบทเรียนจากการทำ RLU เขตสุขภาพที่ 1 ประจำปีงบประมาณ 2569,"บทเรียนและความสำเร็จนำไปสู่การขยายผล ,จัดทำคลังความรู้ (KM)",40000.0,,26
+18,10,P1 : โครงการแลกเปลี่ยนเรียนรู้การขับเคลื่อน AMR เขตสุขภาพที่ 1,เภสัชกร AMR เป็นกลไกสำคัญของระบบ Antimicrobial Stewardship (AMS) ในโรงพยาบาล เป็นพี่เลี้ยงด้าน AMR ระดับเขตสุขภาพลดความเสี่ยงจากการใช้ยาต้านจุลชีพ (ABO) ไม่เหมาะสม ลดภาวะแทรกซ้อนจากเชื้อดื้อยา และเพิ่มความปลอดภัยของผู้ป่วย,84975.0,,28
+19,10,P2: โครงการพัฒนาศักยภาพเภสัชกร AMR เขตสุขภาพที่ 1,"เภสัชกรจากโรงพยาบาลระดับ P โรงพยาบาลละ 2 คน ,พัฒนาเภสัชกร AMR ให้เป็นกำลังหลักของระบบ AMS ระดับโรงพยาบาลและระดับเขต เสริมบทบาทการเป็นพี่เลี้ยง (Mentor) ด้าน AMR ในพื้นที่ สนับสนุนการใช้ยาต้านจุลชีพอย่างสมเหตุสมผล ลดเชื้อดื้อยา และเพิ่มความปลอดภัยของผู้ป่วย",80000.0,,29</script>
+  <script type="text/plain" id="data-teams">team_id,team_name_th
+1,CIO (เทคโนโลยีและสารสนเทศ)
+2,เศรษฐกิจสุขภาพ
+3,โภชนบำบัด
+4,อนามัยสิ่งแวดล้อม
+5,CFO
+6,CPPO
+7,Mental Health
+8,Telemedicine
+9,RLU Hospital
+10,AMR</script>
+
+  <script>
+    const numberFormat = new Intl.NumberFormat('th-TH');
+
+    function parseCSV(text) {
+      const rows = [];
+      let row = [];
+      let cell = '';
+      let inQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const next = text[i + 1];
+        if (char === '"') {
+          if (inQuotes && next === '"') {
+            cell += '"';
+            i += 1;
+            continue;
+          }
+          inQuotes = !inQuotes;
+          continue;
+        }
+        if (char === ',' && !inQuotes) {
+          row.push(cell);
+          cell = '';
+          continue;
+        }
+        if (char === '\n' && !inQuotes) {
+          row.push(cell);
+          rows.push(row);
+          row = [];
+          cell = '';
+          continue;
+        }
+        if (char === '\r') { continue; }
+        cell += char;
+      }
+      if (cell.length || row.length) {
+        row.push(cell);
+        rows.push(row);
+      }
+      const header = rows.shift().map(h => h.trim());
+      return rows
+        .filter(r => r.length && r.some(c => c.trim() !== ''))
+        .map(r => {
+          const obj = {};
+          header.forEach((h, idx) => { obj[h] = (r[idx] ?? '').trim(); });
+          return obj;
+        });
+    }
+
+    function toNumber(value) {
+      if (value === null || value === undefined || value === '') return 0;
+      const cleaned = String(value).replace(/,/g, '');
+      const n = Number(cleaned);
+      return Number.isFinite(n) ? n : 0;
+    }
+
+    const sectionRows = parseCSV(document.getElementById('data-sections').textContent.trim());
+    const teamRows = parseCSV(document.getElementById('data-teams').textContent.trim());
+    const headerRows = parseCSV(document.getElementById('data-header').textContent.trim());
+
+    const sectionMap = new Map(sectionRows.map(row => [row.section_id, row.section_name_th]));
+    const teamMap = new Map(teamRows.map(row => [row.team_id, row.team_name_th]));
+
+    const csoProjects = parseCSV(document.getElementById('data-cso').textContent.trim()).map(row => {
+      const budgets = {
+        budget_subsidy: toNumber(row.budget_subsidy),
+        budget_dev_hr: toNumber(row.budget_dev_hr),
+        budget_dev_ops: toNumber(row.budget_dev_ops),
+        budget_ppa: toNumber(row.budget_ppa),
+        budget_med_dept: toNumber(row.budget_med_dept),
+        budget_other: toNumber(row.budget_other)
+      };
+      return {
+        uid: `cso-${row.project_id}`,
+        name: row.project_name_th || 'ไม่ระบุชื่อโครงการ',
+        type: 'CSO',
+        teamId: null,
+        sectionId: row.section_id,
+        sectionName: sectionMap.get(row.section_id) || 'ไม่ระบุสาขา',
+        teamName: null,
+        budgets
+      };
+    });
+
+    const flagshipProjects = parseCSV(document.getElementById('data-flagship').textContent.trim()).map(row => {
+      return {
+        uid: `flagship-${row.flagship_id}`,
+        name: row.project_name_th || 'ไม่ระบุชื่อโครงการ',
+        type: 'Flagship',
+        teamId: row.team_id,
+        sectionId: null,
+        sectionName: null,
+        teamName: teamMap.get(row.team_id) || 'ไม่ระบุทีม',
+        budgets: {
+          flagship: toNumber(row.estimated_budget_amount) || toNumber(row.estimated_budget_text)
+        }
+      };
+    });
+
+    const allProjects = [...csoProjects, ...flagshipProjects];
+
+    const sources = [
+      { key: 'budget_dev_ops', label: 'งบพัฒนาเขตฯ ดำเนินการ' },
+      { key: 'budget_ppa', label: 'งบ PPA' },
+      { key: 'budget_dev_hr', label: 'งบพัฒนาเขตฯ พัฒนาบุคลากร' },
+      { key: 'budget_med_dept', label: 'งบกรมการแพทย์' },
+      { key: 'budget_other', label: 'งบอื่นๆ' },
+      { key: 'budget_subsidy', label: 'งบอุดหนุน (บค.)' },
+      { key: 'flagship', label: 'งบเรือธง (ประมาณการ)' }
+    ];
+
+    const state = {
+      types: new Set(['CSO', 'Flagship']),
+      sections: new Set(sectionRows.map(r => r.section_id)),
+      teams: new Set(teamRows.map(r => r.team_id)),
+      sources: new Set(sources.map(s => s.key)),
+      search: '',
+      minBudget: null,
+      maxBudget: null,
+      sortBy: 'budget-desc',
+      showSelectedOnly: false
+    };
+
+    const selected = new Set();
+
+    function projectBudget(project) {
+      let total = 0;
+      for (const key of state.sources) {
+        total += project.budgets[key] || 0;
+      }
+      return total;
+    }
+
+    function renderFilters() {
+      const typeContainer = document.getElementById('filter-types');
+      typeContainer.innerHTML = '';
+      ['CSO', 'Flagship'].forEach(type => {
+        const wrapper = document.createElement('label');
+        wrapper.className = 'option';
+        wrapper.innerHTML = `<input type="checkbox" ${state.types.has(type) ? 'checked' : ''}/> ${type}`;
+        wrapper.querySelector('input').addEventListener('change', e => {
+          if (e.target.checked) state.types.add(type); else state.types.delete(type);
+          renderAll();
+        });
+        typeContainer.appendChild(wrapper);
+      });
+
+      const sectionContainer = document.getElementById('filter-sections');
+      sectionContainer.innerHTML = '';
+
+      const sectionTools = document.createElement('div');
+      sectionTools.style.cssText = 'display:flex; gap:6px; margin-bottom:8px;';
+
+      const btnAll = document.createElement('button');
+      btnAll.className = 'badge';
+      btnAll.style.cssText = 'border:none; cursor:pointer; background:#E0F2F1; color:var(--accent);';
+      btnAll.textContent = 'เลือกทั้งหมด';
+      btnAll.addEventListener('click', () => {
+        sectionRows.forEach(r => state.sections.add(r.section_id));
+        renderFilters();
+        renderAll();
+      });
+
+      const btnClear = document.createElement('button');
+      btnClear.className = 'badge';
+      btnClear.style.cssText = 'border:none; cursor:pointer; background:#F3F4F6; color:var(--muted);';
+      btnClear.textContent = 'ล้าง';
+      btnClear.addEventListener('click', () => {
+        state.sections.clear();
+        renderFilters();
+        renderAll();
+      });
+
+      sectionTools.appendChild(btnAll);
+      sectionTools.appendChild(btnClear);
+      sectionContainer.appendChild(sectionTools);
+
+      sectionRows.forEach(row => {
+        const wrapper = document.createElement('label');
+        wrapper.className = 'option';
+        wrapper.innerHTML = `<input type="checkbox" ${state.sections.has(row.section_id) ? 'checked' : ''}/> ${row.section_name_th}`;
+        wrapper.querySelector('input').addEventListener('change', e => {
+          if (e.target.checked) state.sections.add(row.section_id); else state.sections.delete(row.section_id);
+          renderAll();
+        });
+        sectionContainer.appendChild(wrapper);
+      });
+
+
+      const teamContainer = document.getElementById('filter-teams');
+      teamContainer.innerHTML = '';
+      teamRows.forEach(row => {
+        const wrapper = document.createElement('label');
+        wrapper.className = 'option';
+        wrapper.innerHTML = `<input type="checkbox" ${state.teams.has(row.team_id) ? 'checked' : ''}/> ${row.team_name_th}`;
+        wrapper.querySelector('input').addEventListener('change', e => {
+          if (e.target.checked) state.teams.add(row.team_id); else state.teams.delete(row.team_id);
+          renderAll();
+        });
+        teamContainer.appendChild(wrapper);
+      });
+
+      const sourceContainer = document.getElementById('filter-sources');
+      sourceContainer.innerHTML = '';
+      sources.forEach(source => {
+        const wrapper = document.createElement('label');
+        wrapper.className = 'option';
+        wrapper.innerHTML = `<input type="checkbox" ${state.sources.has(source.key) ? 'checked' : ''}/> ${source.label}`;
+        wrapper.querySelector('input').addEventListener('change', e => {
+          if (e.target.checked) state.sources.add(source.key); else state.sources.delete(source.key);
+          renderAll();
+        });
+        sourceContainer.appendChild(wrapper);
+      });
+    }
+
+    function filterProjects() {
+      const search = state.search.toLowerCase();
+      return allProjects.filter(project => {
+        if (!state.types.has(project.type)) return false;
+        if (project.type === 'CSO' && state.sections.size === 0) return false;
+        if (project.type === 'CSO' && !state.sections.has(project.sectionId)) return false;
+        if (project.type === 'Flagship' && state.teams.size === 0) return false;
+        if (project.type === 'Flagship' && state.teams.size === 0) return false;
+        if (project.type === 'Flagship' && !state.teams.has(project.teamId)) return false;
+        if (search && !project.name.toLowerCase().includes(search)) return false;
+        const budget = projectBudget(project);
+        if (state.minBudget !== null && budget < state.minBudget) return false;
+        if (state.maxBudget !== null && budget > state.maxBudget) return false;
+        if (state.showSelectedOnly && !selected.has(project.uid)) return false;
+        return true;
+      });
+    }
+
+    function sortProjects(projects) {
+      const sorted = [...projects];
+      if (state.sortBy === 'budget-desc') {
+        sorted.sort((a, b) => projectBudget(b) - projectBudget(a));
+      } else if (state.sortBy === 'budget-asc') {
+        sorted.sort((a, b) => projectBudget(a) - projectBudget(b));
+      } else {
+        sorted.sort((a, b) => a.name.localeCompare(b.name, 'th'));
+      }
+      return sorted;
+    }
+
+    function renderList(projects) {
+      const list = document.getElementById('project-list');
+      list.innerHTML = '';
+      projects.forEach(project => {
+        const row = document.createElement('div');
+        row.className = `project-row ${selected.has(project.uid) ? 'selected' : ''}`;
+        const budget = projectBudget(project);
+        const metaText = project.type === 'CSO'
+          ? `Service Plan: ${project.sectionName}`
+          : `เรือธง: ${project.teamName}`;
+        row.innerHTML = `
+        <input type="checkbox" ${selected.has(project.uid) ? 'checked' : ''} aria-label="เลือกโครงการ" />
+        <div>
+          <div class="project-title">${project.name}</div>
+          <div class="project-meta">${metaText}</div>
+        </div>
+        <div class="project-budget">${numberFormat.format(budget)} บาท</div>
+      `;
+        const checkbox = row.querySelector('input');
+        checkbox.addEventListener('change', e => {
+          if (e.target.checked) selected.add(project.uid); else selected.delete(project.uid);
+          renderAll();
+        });
+        list.appendChild(row);
+      });
+    }
+
+    function renderSelected() {
+      const selectedList = document.getElementById('selected-list');
+      selectedList.innerHTML = '';
+      const chosen = allProjects.filter(p => selected.has(p.uid));
+      if (!chosen.length) {
+        selectedList.innerHTML = '<div class="notice">ยังไม่มีโครงการที่เลือก</div>';
+        return;
+      }
+      chosen.forEach(project => {
+        const item = document.createElement('div');
+        item.className = 'selected-item';
+        const budget = projectBudget(project);
+        const metaText = project.type === 'CSO'
+          ? `Service Plan: ${project.sectionName}`
+          : `เรือธง: ${project.teamName}`;
+        item.innerHTML = `
+        <div class="project-title">${project.name}</div>
+        <div class="project-meta">${metaText}</div>
+        <div class="project-budget">งบ ${numberFormat.format(budget)} บาท</div>
+      `;
+        selectedList.appendChild(item);
+      });
+    }
+
+    function renderSummary(filtered) {
+      const selectedProjects = allProjects.filter(p => selected.has(p.uid));
+      const selectedCount = selectedProjects.length;
+      const selectedTotal = selectedProjects.reduce((sum, p) => sum + projectBudget(p), 0);
+
+      const filteredTotal = filtered.reduce((sum, p) => sum + projectBudget(p), 0);
+
+      document.getElementById('stat-selected').textContent = `${numberFormat.format(selectedCount)} โครงการ`;
+      document.getElementById('stat-selected-sub').textContent = `งบรวม ${numberFormat.format(selectedTotal)} บาท`;
+      document.getElementById('stat-filtered').textContent = `${numberFormat.format(filtered.length)} โครงการ`;
+      document.getElementById('stat-filtered-sub').textContent = `งบรวม ${numberFormat.format(filteredTotal)} บาท`;
+
+      document.getElementById('result-count').textContent = `${numberFormat.format(filtered.length)} รายการ`;
+
+      const sourceTotals = {};
+      for (const source of sources) sourceTotals[source.key] = 0;
+      selectedProjects.forEach(project => {
+        for (const key of state.sources) {
+          sourceTotals[key] += project.budgets[key] || 0;
+        }
+      });
+      const sourceContainer = document.getElementById('source-totals');
+      sourceContainer.innerHTML = '';
+      if (!state.sources.size) {
+        sourceContainer.innerHTML = '<span class="source-chip">ไม่ได้เลือกแหล่งงบ</span>';
+      } else {
+        sources.forEach(source => {
+          if (!state.sources.has(source.key)) return;
+          const chip = document.createElement('span');
+          chip.className = 'source-chip';
+          chip.textContent = `${source.label}: ${numberFormat.format(sourceTotals[source.key])} บาท`;
+          sourceContainer.appendChild(chip);
+        });
+      }
+    }
+
+    function selectByServicePlan() {
+      if (!state.sections || state.sections.size === 0) {
+        alert('กรุณาเลือก Service Plan (สาขา) อย่างน้อย 1 รายการ');
+        return;
+      }
+      const projects = allProjects.filter(project => project.type === 'CSO' && state.sections.has(project.sectionId));
+      projects.forEach(project => selected.add(project.uid));
+      renderAll();
+    }
+
+    function csvEscape(value) {
+      const text = String(value ?? '');
+      if (/[",\n]/.test(text)) {
+        return `"${text.replace(/"/g, '""')}"`;
+      }
+      return text;
+    }
+
+    function exportSelected() {
+      const chosen = allProjects.filter(p => selected.has(p.uid));
+      if (!chosen.length) {
+        alert('ยังไม่มีโครงการที่เลือก');
+        return;
+      }
+
+      const headers = [
+        'ประเภท',
+        'ชื่อโครงการ',
+        'สังกัด',
+        'งบรวม(แหล่งงบที่เลือก)',
+        ...sources.map(s => s.label)
+      ];
+
+      const rows = chosen.map(project => {
+        const meta = project.type === 'CSO'
+          ? `Service Plan: ${project.sectionName}`
+          : `เรือธง: ${project.teamName}`;
+        const total = projectBudget(project);
+        return [
+          project.type,
+          project.name,
+          meta,
+          total,
+          ...sources.map(s => project.budgets[s.key] || 0)
+        ];
+      });
+
+      const csvLines = [headers, ...rows].map(row => row.map(csvEscape).join(',')).join('\n');
+      const bom = '\ufeff';
+      const blob = new Blob([bom + csvLines], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const date = new Date();
+      const stamp = `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}${String(date.getDate()).padStart(2, '0')}`;
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `selected_projects_${stamp}.csv`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function syncListHeight() {
+      const list = document.getElementById('project-list');
+      const filterPanel = document.querySelector('.filters-panel');
+      const projectsPanel = document.querySelector('.projects-panel');
+      const note = document.querySelector('.project-note');
+      if (!list || !filterPanel || !projectsPanel) return;
+
+      if (window.matchMedia('(max-width: 980px)').matches) {
+        const mobileHeight = Math.max(320, Math.floor(window.innerHeight * 0.5));
+        list.style.maxHeight = `${mobileHeight}px`;
+        return;
+      }
+
+      const panelStyles = getComputedStyle(projectsPanel);
+      const paddingY = parseFloat(panelStyles.paddingTop) + parseFloat(panelStyles.paddingBottom);
+      const header = projectsPanel.querySelector('h2');
+      const tools = projectsPanel.querySelector('.list-tools');
+      const used = paddingY
+        + (header?.offsetHeight || 0)
+        + (tools?.offsetHeight || 0)
+        + (note?.offsetHeight || 0)
+        + 16;
+
+      const available = filterPanel.offsetHeight - used;
+      // Removed maxCap to allow full height matching
+      const height = Math.max(360, Math.floor(available));
+      list.style.maxHeight = `${height}px`;
+    }
+
+    function renderAll() {
+      const filtered = sortProjects(filterProjects());
+      renderList(filtered);
+      renderSelected();
+      renderSummary(filtered);
+      syncListHeight();
+    }
+
+    function resetFilters() {
+      state.types = new Set(['CSO', 'Flagship']);
+      state.sections = new Set(sectionRows.map(r => r.section_id));
+      state.teams = new Set(teamRows.map(r => r.team_id));
+      state.sources = new Set(sources.map(s => s.key));
+      state.search = '';
+      state.minBudget = null;
+      state.maxBudget = null;
+      state.sortBy = 'budget-desc';
+      state.showSelectedOnly = false;
+
+      document.getElementById('search').value = '';
+      document.getElementById('min-budget').value = '';
+      document.getElementById('max-budget').value = '';
+      document.getElementById('sort').value = 'budget-desc';
+      document.getElementById('show-selected-only').checked = false;
+
+      renderFilters();
+      renderAll();
+    }
+
+    function bindInputs() {
+      document.getElementById('search').addEventListener('input', e => {
+        state.search = e.target.value.trim();
+        renderAll();
+      });
+      document.getElementById('min-budget').addEventListener('input', e => {
+        state.minBudget = e.target.value ? Number(e.target.value) : null;
+        renderAll();
+      });
+      document.getElementById('max-budget').addEventListener('input', e => {
+        state.maxBudget = e.target.value ? Number(e.target.value) : null;
+        renderAll();
+      });
+      document.getElementById('sort').addEventListener('change', e => {
+        state.sortBy = e.target.value;
+        renderAll();
+      });
+      document.getElementById('show-selected-only').addEventListener('change', e => {
+        state.showSelectedOnly = e.target.checked;
+        renderAll();
+      });
+      const selectByServicePlanButton = document.getElementById('select-by-service-plan');
+      if (selectByServicePlanButton) selectByServicePlanButton.addEventListener('click', selectByServicePlan);
+      document.getElementById('select-all').addEventListener('click', () => {
+        const filtered = filterProjects();
+        filtered.forEach(project => selected.add(project.uid));
+        renderAll();
+      });
+      document.getElementById('clear-selected').addEventListener('click', () => {
+        selected.clear();
+        renderAll();
+      });
+      const exportButton = document.getElementById('export-selected');
+      if (exportButton) exportButton.addEventListener('click', exportSelected);
+      document.getElementById('reset-filters').addEventListener('click', resetFilters);
+      window.addEventListener('resize', () => {
+        syncListHeight();
+      });
+    }
+
+    function renderMeta() {
+      const row = headerRows[0];
+      if (!row) return;
+      const planYear = row.plan_year ? `แผนปี ${row.plan_year}` : '';
+      const update = row.update_as_of ? `อัปเดตข้อมูล ${row.update_as_of}` : '';
+      const region = row.plan_region || '';
+      const meta = [planYear, region, update].filter(Boolean).join(' ? ');
+      if (meta) document.getElementById('meta-text').textContent = meta;
+    }
+
+    renderFilters();
+    bindInputs();
+    renderMeta();
+    renderAll();
+  </script>
+</body>
+
+</html>
