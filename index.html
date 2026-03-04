@@ -231,7 +231,7 @@
 
     .project-row {
       display: grid;
-      grid-template-columns: 28px 1fr 140px;
+      grid-template-columns: 28px 1fr 100px 70px;
       gap: 10px;
       align-items: center;
       padding: 10px 12px;
@@ -243,6 +243,44 @@
     .project-row.selected {
       border-color: rgba(11, 110, 110, 0.4);
       box-shadow: 0 6px 18px rgba(11, 110, 110, 0.08);
+    }
+
+    /* AI Scoring Badge */
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+      cursor: help;
+    }
+    .ai-badge.grade-a { background: linear-gradient(135deg, #10B981, #059669); }
+    .ai-badge.grade-b { background: linear-gradient(135deg, #3B82F6, #2563EB); }
+    .ai-badge.grade-c { background: linear-gradient(135deg, #F59E0B, #D97706); }
+    .ai-badge.grade-d { background: linear-gradient(135deg, #EF4444, #DC2626); }
+    
+    .ai-status-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+    .ai-status-tag.good { background: #D1FAE5; color: #065F46; }
+    .ai-status-tag.warning { background: #FEF3C7; color: #92400E; }
+    .ai-status-tag.danger { background: #FEE2E2; color: #991B1B; }
+
+    .project-meta-ai {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 4px;
     }
 
     .project-title {
@@ -312,11 +350,17 @@
       }
 
       .project-row {
-        grid-template-columns: 28px 1fr;
+        grid-template-columns: 28px 1fr 40px;
       }
 
       .project-budget {
-        text-align: left;
+        display: none;
+      }
+      
+      .ai-badge {
+        width: 28px;
+        height: 28px;
+        font-size: 10px;
       }
     }
 
@@ -565,6 +609,36 @@
         <div class="control-group">
           <label>แหล่งงบที่นับรวม</label>
           <div class="option-list" id="filter-sources"></div>
+        </div>
+
+        <div class="control-group">
+          <label>คะแนน AI (ความสอดคล้อง)</label>
+          <div class="option-list" id="filter-ai-score">
+            <label class="option">
+              <input type="checkbox" value="A" checked /> <span style="color:#059669; font-weight:600;">A</span> (80-100) - ดีเยี่ยม
+            </label>
+            <label class="option">
+              <input type="checkbox" value="B" checked /> <span style="color:#2563EB; font-weight:600;">B</span> (60-79) - ดี
+            </label>
+            <label class="option">
+              <input type="checkbox" value="C" checked /> <span style="color:#D97706; font-weight:600;">C</span> (40-59) - ปานกลาง
+            </label>
+            <label class="option">
+              <input type="checkbox" value="D" /> <span style="color:#DC2626; font-weight:600;">D</span> (0-39) - ต้องปรับปรุง
+            </label>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <label>ความสมบูรณ์ข้อมูล</label>
+          <div class="option-list" id="filter-completeness">
+            <label class="option">
+              <input type="checkbox" value="complete" checked /> ข้อมูลครบถ้วน
+            </label>
+            <label class="option">
+              <input type="checkbox" value="incomplete" checked /> ต้องปรับปรุง
+            </label>
+          </div>
         </div>
 
         <div class="control-group">
@@ -823,7 +897,7 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
 
 5,4,โครงการส่งเสริมการพัฒนาโรงพยาบาลคาร์บอนต่ำ เขตสุขภาพที่ 1,การประเมินสิ่งแวดล้อมของโรงพยาบาลตามเกณฑ์มาตรฐาน Green & Clean Hospital Challenge (GCHC) มีการประเมินเกณฑ์มาตรฐาน โดยส่วนใหญ่โรงพยาบาลจะผ่านเกณฑ์มาตรฐาน แต่ในระดับ Challenge จะผ่านในบางแห่งเท่านั้น และมักจะผ่านในด้านอื่นๆ ในส่วนของด้านที่ผ่านยากที่สุด คือ การพัฒนาโรงพยาบาลคาร์บอนต่ำและเท่าทันการเปลี่ยนแปลงสภาพภูมิอากาศ (Low Carbon and Climate Resilient Health Care) ซึ่งเป็นประเด็นที่เกิดประโยชน์ต่อทั้งรพ.และทางเศรษฐกิจ สามารถสร้างรายได้จากการขายคาร์บอนเครดิต และเป็นที่ยอมรับในระดับสากล,20000.0,,9
 6,5,"P1 : โครงการกํากับ ติดตาม สอบทานระบบการบริหารจัดการด้านการเงินการคลังหน่วยบริการในเขตสุขภาพที่ 1 (407,160)",กำหนดกลยุทธ์เข้าช่วยเหลือหน่วยงานที่ประสบปัญหาวิกฤตทางการเงิน (Planfin) และเพิ่มประสิทธิภาพการเรียกเก็บ (Revenue Cycle Management),407160.0,,11
-7,5,"P2 : โครงการประชุมเชิงปฏิบัติการพัฒนาระบบบริหารจัดการลูกหนี้ของหน่วยบริการในเขตสุขภาพที่ 1 (346,200)",,346200.0,,12
+7,5,"P2 : โครงการประชุมเชิงปฏิบัติการพัฒนาระบบบริหารจัดการลูกหนี้ของหน่วยบริการในเขตสุขภาพที่ 1 (346,200)",พัฒนาระบบบริหารจัดการลูกหนี้และเพิ่มประสิทธิภาพการจัดเก็บหนี้สู่ความยั่งยืนทางการเงิน,346200.0,,12
 8,6,Cognition & Fall Screening and Intervention,"เชื่อมโยงการดูแลอย่างต่อเนื่อง สร้างศูนย์ระดับอำเภอ (Care Pathway) เพื่อพัฒนาระบบคัดกรองและป้องกันในผู้สูงอายุบางกลุ่ม
 ครอบคลุมผู้สูงอายุติดบ้าน การดูแลต่อเนื่องภาวะหลงลืม และการป้องกันการพลัดตกหกล้มในผู้สูงอายุโดยเชื่อมโยงการดูแลระดับชุมชนกับโรงพยาบาลสำหรับกลุ่มผู้สูงอายุติดสังคมและกลุ่มเสี่ยงที่ไม่สามารถเข้าถึงการคัดกรองในหน่วยบริการรวมถึงการเสริมศักยภาพบุคลากรระดับปฐมภูมิ",3500000.0,,14
 9,7,P1: โครงการค้นหากลุ่มเสี่ยงเชิงชิรุกรุ ระดับชุมชนโดย Mental Health Hero,ลดอัตราการฆ่าตัวตายให้ต่ำกว่าเกณฑ์อย่างยั่งยืนโดยเปลี่ยนระบบจากเชิงรับเป็นเชิงรุก (early detection + continuity + equitable access) พร้อมยกระดับคุณภาพข้อมูลการพยายามฆ่าตัวตาย (Attempt),900000.0,,16
@@ -838,13 +912,18 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
 17,9,P5 : โครงการถอดบทเรียนจากการทำ RLU เขตสุขภาพที่ 1 ประจำปีงบประมาณ 2569,"บทเรียนและความสำเร็จนำไปสู่การขยายผล ,จัดทำคลังความรู้ (KM)",40000.0,,26
 18,10,P1 : โครงการแลกเปลี่ยนเรียนรู้การขับเคลื่อน AMR เขตสุขภาพที่ 1,เภสัชกร AMR เป็นกลไกสำคัญของระบบ Antimicrobial Stewardship (AMS) ในโรงพยาบาล เป็นพี่เลี้ยงด้าน AMR ระดับเขตสุขภาพลดความเสี่ยงจากการใช้ยาต้านจุลชีพ (ABO) ไม่เหมาะสม ลดภาวะแทรกซ้อนจากเชื้อดื้อยา และเพิ่มความปลอดภัยของผู้ป่วย,84975.0,,28
 19,10,P2: โครงการพัฒนาศักยภาพเภสัชกร AMR เขตสุขภาพที่ 1,"เภสัชกรจากโรงพยาบาลระดับ P โรงพยาบาลละ 2 คน ,พัฒนาเภสัชกร AMR ให้เป็นกำลังหลักของระบบ AMS ระดับโรงพยาบาลและระดับเขต เสริมบทบาทการเป็นพี่เลี้ยง (Mentor) ด้าน AMR ในพื้นที่ สนับสนุนการใช้ยาต้านจุลชีพอย่างสมเหตุสมผล ลดเชื้อดื้อยา และเพิ่มความปลอดภัยของผู้ป่วย",80000.0,,29
-20,11,P1: โครงการพัฒนาพัฒนาฟื้นฟูทักษะการไกล่เกลี่ยให้บุคลากรในเขตสุขภาพที่ 1,,300000.0,,30
-21,12,P1: โครงการแก้ไขปัญหาการขาดแคลนบุคลากรด้านสาธารณสุข เขตสุขภาพที่ 1,,0,ไม่ใช้งบประมาณ,31
-22,12,P2: โครงการประชุมเชิงปฏิบัติการ “การจัดทำแผนกลยุทธ์ 3 ปี ด้านการบริหารทรัพยากรบุคคล เขตสุขภาพที่ 1”,,50000.0,,32
-23,12,"P3: โครงการพัฒนาระบบบริการทางการแพทย์ ในสาขาวิชาชีพขาดแคลน ในพื้นที่ห่างไกล (สาขาออร์โธปิดิกส์, สาขาศัลยศาสตร์, สาขากุมารเวชศาสตร์ และสาขาวิสัญญี ใน โรงพยาบาลศรีสังวาลย์ จังหวัดแม่ฮ่องสอน เครือข่ายล้านนา 1 เขตสุขภาพที่ 1)",,2000000.0,,33
-24,12,P4: โครงการเสริมสร้างความก้าวหน้าในวิชาชีพ,,90000.0,,34
-25,12,P5: โครงการฝึกอบรมการเป็นข้าราชการที่ดี (หลักสูตรต้นกล้าข้าราชการ) เขตสุขภาพที่ 1 ประจำปี 2569 (ข้าราชการแพทย์และทันตแพทย์),,410000.0,,35
-26,13,P1: โครงการประชุมวิชาการแลกเปลี่ยนเรียนรู้นำเสนอผลงานทางวิชาการเครือข่ายราชทัณฑ์ปันสุข เขตสุขภาพที่ 1,,101400.0,,36</script>
+20,11,P1: โครงการพัฒนาพัฒนาฟื้นฟูทักษะการไกล่เกลี่ยให้บุคลากรในเขตสุขภาพที่ 1,เพื่อให้มีความรู้ ความเข้าใจเกี่ยวกับความขัดแจ้งในระบบการแพทย์และการให้บริการ / สนับสนุนให้เกิดความเข้าใจและสามารถบริหารจัดการข้อพิพาททางการแพทย์และการให้บริการ,300000.0,,30
+21,12,P1: โครงการแก้ไขปัญหาการขาดแคลนบุคลากรด้านสาธารณสุข เขตสุขภาพที่ 1,เพื่อเพิ่มอัตรากำลัง,0,ไม่ใช้งบประมาณ,31
+22,12,P2: โครงการประชุมเชิงปฏิบัติการ “การจัดทำแผนกลยุทธ์ 3 ปี ด้านการบริหารทรัพยากรบุคคล เขตสุขภาพที่ 1”,จัดทำแผนกลยุทธ์การบริหารทรัพยากรบุคคลระยะ 3 ปี ครอบคลุมการวางแผนอัตรากำลัง การพัฒนาศักยภาพการธำรงรักษาบุคลากร และเส้นทางความก้าวหน้าในวิชาชีพ,50000.0,,32
+23,12,"P3: โครงการพัฒนาระบบบริการทางการแพทย์ ในสาขาวิชาชีพขาดแคลน ในพื้นที่ห่างไกล (สาขาออร์โธปิดิกส์, สาขาศัลยศาสตร์, สาขากุมารเวชศาสตร์ และสาขาวิสัญญี ใน โรงพยาบาลศรีสังวาลย์ จังหวัดแม่ฮ่องสอน เครือข่ายล้านนา 1 เขตสุขภาพที่ 1)",เพื่อให้มีการจัดบริการด้านการแพทย์เฉพาะทางในสาขาขาดแคลน ให้กับประชาชนในพื้นที่กันดารและห่างไกล,2000000.0,,33
+24,12,P4: โครงการเสริมสร้างความก้าวหน้าในวิชาชีพ,"1.เพื่อให้บุคลากรในสังกัดเขตสุขภาพที่ 1 และผู้มีคุณสมบัติครบถ้วนที่จะขอประเมินเพื่อเลื่อนขึ้นแต่งตั้งให้ดำรงตำแหน่งสูงขึ้น มีความรู้ความเข้าใจ หลักเกณฑ์ วิธีการและเงื่อนไขการขอประเมินผลงานทางวิชาการ ได้ถูกต้องตามหลักเกณฑ์ใหม่ ไม่เสียสิทธิ์อันพึงมีพึงได้
+2.เพื่อให้บุคลากรที่สนใจในสังกัดเขตสุขภาพที่ 1 และผู้ได้รับมอบหมายให้ปฏิบัติงานเกี่ยวกับการประเมินผลงานทางวิชาการ ดำเนินการได้อย่างถูกต้องตามกฎ ระเบียบที่กำหนด",90000.0,,34
+25,12,P5: โครงการฝึกอบรมการเป็นข้าราชการที่ดี (หลักสูตรต้นกล้าข้าราชการ) เขตสุขภาพที่ 1 ประจำปี 2569 (ข้าราชการแพทย์และทันตแพทย์),"1. เพื่อปลูกฝังปรัชญาการเป็นข้าราชการที่ดี และบุคลากรสาธารณสุขที่มีคุณภาพ
+2. เพื่อเสริมสร้างสมรรถนะและทักษะที่จำเป็นสำหรับปฏิบัติงานราชการ
+3. เพื่อเสริมสร้างคุณธรรมและจริยธรรมในวิชาชีพ
+4. เพื่อบูรณาการความรู้ ความเข้าใจ เตรียมความพร้อมในการวางแผนการศึกษาต่ออย่างเป็นระบบ",410000.0,,35
+26,13,P1: โครงการประชุมวิชาการแลกเปลี่ยนเรียนรู้นำเสนอผลงานทางวิชาการเครือข่ายราชทัณฑ์ปันสุข เขตสุขภาพที่ 1,"1.เพื่อเป็นเวทีในการนำเสนอผลงานทางวิชาการ กิจกรรม และนวัตกรรมด้านสาธารณสุข งานราชทัณฑ์ และงานบำบัดฟื้นฟูผู้ต้องขัง ในเขตสุขภาพที่ 1
+2.เพื่อพัฒนาแนวทางขับเคลื่อนงานสุขภาพในเรือนจำอย่างยั่งยืน สอดคล้องกับนโยบายของกระทรวงสาธารณสุข",101400.0,,36</script>
   <script type="text/plain" id="data-teams">team_id,team_name_th
 1,CIO (เทคโนโลยีและสารสนเทศ)
 2,เศรษฐกิจสุขภาพ
@@ -954,6 +1033,7 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
         sectionId: null,
         sectionName: null,
         teamName: teamMap.get(row.team_id) || 'ไม่ระบุทีม',
+        strategicObjective: row.strategic_objective || '',
         budgets: {
           flagship: toNumber(row.estimated_budget_amount) || toNumber(row.estimated_budget_text)
         }
@@ -977,6 +1057,8 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
       sections: new Set(sectionRows.map(r => r.section_id)),
       teams: new Set(teamRows.map(r => r.team_id)),
       sources: new Set(sources.map(s => s.key)),
+      aiScores: new Set(['A', 'B', 'C']), // ค่าเริ่มต้นไม่รวม D
+      completeness: new Set(['complete', 'incomplete']),
       search: '',
       minBudget: null,
       maxBudget: null,
@@ -1103,6 +1185,32 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
         });
         sourceContainer.appendChild(wrapper);
       });
+
+      // AI Score filter
+      const aiScoreContainer = document.getElementById('filter-ai-score');
+      if (aiScoreContainer) {
+        const aiCheckboxes = aiScoreContainer.querySelectorAll('input[type="checkbox"]');
+        aiCheckboxes.forEach(cb => {
+          cb.checked = state.aiScores.has(cb.value);
+          cb.addEventListener('change', e => {
+            if (e.target.checked) state.aiScores.add(cb.value); else state.aiScores.delete(cb.value);
+            renderAll();
+          });
+        });
+      }
+
+      // Completeness filter
+      const completenessContainer = document.getElementById('filter-completeness');
+      if (completenessContainer) {
+        const compCheckboxes = completenessContainer.querySelectorAll('input[type="checkbox"]');
+        compCheckboxes.forEach(cb => {
+          cb.checked = state.completeness.has(cb.value);
+          cb.addEventListener('change', e => {
+            if (e.target.checked) state.completeness.add(cb.value); else state.completeness.delete(cb.value);
+            renderAll();
+          });
+        });
+      }
     }
 
     function filterProjects() {
@@ -1119,6 +1227,16 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
         if (state.minBudget !== null && budget < state.minBudget) return false;
         if (state.maxBudget !== null && budget > state.maxBudget) return false;
         if (state.showSelectedOnly && !selected.has(project.uid)) return false;
+        
+        // AI Score filtering
+        const aiScore = calculateAIScore(project);
+        if (!state.aiScores.has(aiScore.grade)) return false;
+        
+        // Completeness filtering
+        const isComplete = aiScore.missingItems.length === 0;
+        if (isComplete && !state.completeness.has('complete')) return false;
+        if (!isComplete && !state.completeness.has('incomplete')) return false;
+        
         return true;
       });
     }
@@ -1146,13 +1264,25 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
         const metaText = project.type === 'CSO'
           ? `Service Plan: ${project.sectionName}`
           : `เรือธง: ${project.teamName}`;
+        
+        // คำนวณ AI Score
+        const aiScore = calculateAIScore(project);
+        const gradeClass = aiScore.grade === 'A' ? 'grade-a' : aiScore.grade === 'B' ? 'grade-b' : aiScore.grade === 'C' ? 'grade-c' : 'grade-d';
+        const statusClass = aiScore.total >= 60 ? 'good' : aiScore.total >= 40 ? 'warning' : 'danger';
+        const statusText = aiScore.total >= 60 ? 'ผ่าน' : 'ปรับปรุง';
+        
         row.innerHTML = `
         <input type="checkbox" ${selected.has(project.uid) ? 'checked' : ''} aria-label="เลือกโครงการ" />
         <div>
           <div class="project-title clickable" data-project-name="${escapeHtml(project.name)}">${project.name}</div>
           <div class="project-meta">${metaText}</div>
+          <div class="project-meta-ai">
+            <span class="ai-status-tag ${statusClass}">${statusText}</span>
+            ${aiScore.missingItems.length > 0 ? `<span style="font-size:11px;color:var(--muted)">(${aiScore.missingItems.length} จุดที่ต้องปรับ)</span>` : ''}
+          </div>
         </div>
         <div class="project-budget">${numberFormat.format(budget)} บาท</div>
+        <div class="ai-badge ${gradeClass}" title="AI Score: ${aiScore.total}/100 - ${aiScore.status}">${aiScore.grade}</div>
       `;
         const checkbox = row.querySelector('input');
         checkbox.addEventListener('change', e => {
@@ -1343,6 +1473,8 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
       state.sections = new Set(sectionRows.map(r => r.section_id));
       state.teams = new Set(teamRows.map(r => r.team_id));
       state.sources = new Set(sources.map(s => s.key));
+      state.aiScores = new Set(['A', 'B', 'C', 'D']);
+      state.completeness = new Set(['complete', 'incomplete']);
       state.search = '';
       state.minBudget = null;
       state.maxBudget = null;
@@ -1409,6 +1541,233 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
       if (meta) document.getElementById('meta-text').textContent = meta;
     }
 
+    // ==================== AI SCORING ENGINE ====================
+
+    // เกณฑ์การประเมินตามบริบท Intro.txt
+    const aiScoringCriteria = {
+      // 1. ยุทธศาสตร์ 5 ด้าน (4+1 Excellence)
+      excellenceAreas: {
+        'PP&P': ['ส่งเสริม', 'ป้องกัน', 'สุขภาพปฐมภูมิ', 'NCD', 'เบาหวาน', 'ความดัน', 'PM2.5', 'ฝุ่น', 'เด็ก', 'อนามัย', 'สิ่งแวดล้อม', 'Green', 'Clean'],
+        'Service': ['บริการ', 'รักษา', 'ลดป่วย', 'ลดตาย', 'Telemedicine', 'ส่งต่อ', 'ฉุกเฉิน', 'หัวใจ', 'Stroke', 'มะเร็ง', 'ไต', 'จิต'],
+        'People': ['บุคลากร', 'แพทย์', 'พยาบาล', 'กำลังคน', 'HR', 'Sandbox', 'คงอยู่', 'ความสุข', 'พัฒนา'],
+        'Governance': ['ธรรมาภิบาล', 'คุณธรรม', 'โปร่งใส', 'ไซเบอร์', 'ความมั่นคง', 'RLU', 'คุณภาพ', 'ห้องปฏิบัติการ'],
+        'Economy': ['เศรษฐกิจ', 'Wellness', 'ท่องเที่ยว', 'สปา', 'Medical Hub', 'รายได้', 'คาร์บอน']
+      },
+      // 2. ปัญหาหลักของเขตสุขภาพที่ 1
+      keyProblems: {
+        'aged_society': ['ผู้สูงอายุ', 'Super Aged', 'AFC', 'Age-Friendly', 'หลงลืม', 'พลัดตกหกล้ม', 'Cognition', 'Fall'],
+        'ncd': ['เบาหวาน', 'ความดัน', 'หัวใจ', 'Stroke', 'CKD', 'ไต', 'NCD', 'HbA1c'],
+        'pm25': ['PM2.5', 'ฝุ่น', 'COPD', 'หอบหืด', 'ปอด', 'Safe Zone', 'ห้องปลอดฝุ่น'],
+        'mental': ['สุขภาพจิต', 'ฆ่าตัวตาย', 'suicide', 'Mental Health', 'Hero', 'SMI', 'ยาเสพติด'],
+        'rti': ['อุบัติเหตุ', 'ถนน', 'RTI', 'Trauma', 'EMS', 'MERT', 'ฉุกเฉิน'],
+        'border': ['ชายแดน', 'ขุนยวม', 'แม่ฮ่องสอน', 'ต่างด้าว', 'ผู้หนีภัย', 'สู้รบ']
+      },
+      // 3. คำหลัก Area Based
+      areaBased: ['Area Based', 'เชิงพื้นที่', 'ดิจิทัลแมป', 'Digital Mapping', 'Sky Doctor', 'ลำเลียง', 'อากาศยาน'],
+      // 4. คำหลักเทคโนโลยีและนวัตกรรม
+      innovation: ['AI', 'Digital', 'เทคโนโลยี', 'นวัตกรรม', 'Telemedicine', 'Telehealth', 'ปัญญาประดิษฐ์', 'คาร์บอนต่ำ']
+    };
+
+    // ฟังก์ชันคำนวณคะแนน AI
+    function calculateAIScore(project) {
+      const text = (project.name + ' ' + (project.strategicObjective || '')).toLowerCase();
+      const budget = projectBudget(project);
+      
+      let scores = {
+        excellence: 0,      // สอดคล้องยุทธศาสตร์ 5 ด้าน
+        problemAlignment: 0, // ตอบโจทย์ปัญหาหลัก
+        areaBased: 0,       // Area Based
+        innovation: 0,      // นวัตกรรม/เทคโนโลยี
+        completeness: 0,    // ความสมบูรณ์ข้อมูล
+        budgetReasonable: 0 // ความเหมาะสมงบประมาณ
+      };
+
+      // 1. คะแนนความสอดคล้องยุทธศาสตร์ 5 ด้าน (20%)
+      let excellenceMatches = 0;
+      Object.values(aiScoringCriteria.excellenceAreas).forEach(keywords => {
+        if (keywords.some(k => text.includes(k.toLowerCase()))) excellenceMatches++;
+      });
+      scores.excellence = Math.min(20, excellenceMatches * 5);
+
+      // 2. คะแนนตอบโจทย์ปัญหาหลัก (30%)
+      let problemMatches = 0;
+      Object.values(aiScoringCriteria.keyProblems).forEach(keywords => {
+        if (keywords.some(k => text.includes(k.toLowerCase()))) problemMatches++;
+      });
+      scores.problemAlignment = Math.min(30, problemMatches * 6);
+
+      // 3. คะแนน Area Based (15%)
+      const areaBasedMatch = aiScoringCriteria.areaBased.some(k => text.includes(k.toLowerCase()));
+      scores.areaBased = areaBasedMatch ? 15 : 0;
+
+      // 4. คะแนนนวัตกรรม/เทคโนโลยี (10%)
+      const innovationMatch = aiScoringCriteria.innovation.some(k => text.includes(k.toLowerCase()));
+      scores.innovation = innovationMatch ? 10 : 0;
+
+      // 5. คะแนนความสมบูรณ์ข้อมูล (15%)
+      let completenessScore = 0;
+      if (project.strategicObjective && project.strategicObjective.length > 10) completenessScore += 5;
+      if (project.strategicObjective && project.strategicObjective.length > 50) completenessScore += 5;
+      if (budget > 0) completenessScore += 5;
+      scores.completeness = completenessScore;
+
+      // 6. คะแนนความเหมาะสมงบประมาณ (10%)
+      if (budget > 0 && budget < 100000) scores.budgetReasonable = 10; // โครงการขนาดเล็ก
+      else if (budget >= 100000 && budget < 1000000) scores.budgetReasonable = 8; // ขนาดกลาง
+      else if (budget >= 1000000 && budget < 5000000) scores.budgetReasonable = 6; // ขนาดใหญ่
+      else if (budget >= 5000000) scores.budgetReasonable = 4; // ขนาดใหญ่มาก ต้องมีเหตุผล
+      else scores.budgetReasonable = 0;
+
+      // คะแนนรวม
+      const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
+      
+      return {
+        total: totalScore,
+        scores: scores,
+        grade: totalScore >= 80 ? 'A' : totalScore >= 60 ? 'B' : totalScore >= 40 ? 'C' : 'D',
+        status: totalScore >= 60 ? 'ผ่านเกณฑ์' : 'ต้องปรับปรุง',
+        missingItems: getMissingItems(project, scores)
+      };
+    }
+
+    // ฟังก์ชันระบุจุดที่ขาด/ต้องปรับปรุง
+    function getMissingItems(project, scores) {
+      const missing = [];
+      const text = (project.name + ' ' + (project.strategicObjective || '')).toLowerCase();
+      
+      if (scores.excellence < 10) {
+        missing.push('ควรเชื่อมโยงกับยุทธศาสตร์ 5 ด้าน (4+1 Excellence) ให้ชัดเจน');
+      }
+      if (scores.problemAlignment < 15) {
+        missing.push('ควรระบุปัญหาหลักที่ตอบสนอง (NCDs, PM2.5, ผู้สูงอายุ, สุขภาพจิต)');
+      }
+      if (!project.strategicObjective || project.strategicObjective.length < 30) {
+        missing.push('วัตถุประสงค์ต้องมีรายละเอียดเพิ่มเติม (อย่างน้อย 30 ตัวอักษร)');
+      }
+      if (projectBudget(project) === 0) {
+        missing.push('ต้องระบุงบประมาณที่ชัดเจน');
+      }
+      if (!aiScoringCriteria.areaBased.some(k => text.includes(k.toLowerCase()))) {
+        missing.push('ควรพิจารณา Area Based approach สำหรับพื้นที่เขตสุขภาพที่ 1');
+      }
+      
+      return missing;
+    }
+
+    // ฟังก์ชันแนะนำตัวชี้วัด (KPI) อัตโนมัติ
+    function suggestKPIs(project) {
+      const text = (project.name + ' ' + (project.strategicObjective || '')).toLowerCase();
+      const suggestions = [];
+
+      // แนะนำ KPI ตามประเภทโครงการ
+      if (text.includes('ncd') || text.includes('เบาหวาน') || text.includes('ความดัน')) {
+        suggestions.push({
+          kpi: 'ร้อยละผู้ป่วยเบาหวาน/ความดันที่ควบคุมได้ตามเป้าหมาย',
+          target: '≥ 50%',
+          source: 'ตัวชี้วัดกระทรวงฯ ปี 2569'
+        });
+      }
+      if (text.includes('pm2.5') || text.includes('ฝุ่น') || text.includes('copd')) {
+        suggestions.push({
+          kpi: 'ร้อยละของโรงพยาบาลที่มีห้องปลอดฝุ่น/มุ้งสู้ฝุ่น (Safe Zone)',
+          target: '≥ 60%',
+          source: 'ตัวชี้วัด Area Based PM2.5'
+        });
+        suggestions.push({
+          kpi: 'อัตราผู้ป่วยหอบหืด/COPD กำเริบลดลง',
+          target: '≥ 20%',
+          source: 'ตัวชี้วัดผลลัพธ์'
+        });
+      }
+      if (text.includes('ผู้สูงอายุ') || text.includes('aged') || text.includes('afc')) {
+        suggestions.push({
+          kpi: 'ร้อยละชุมชนที่เป็น Age-Friendly Community (AFC)',
+          target: '≥ 30%',
+          source: 'เป้าหมายเขตสุขภาพที่ 1'
+        });
+        suggestions.push({
+          kpi: 'อัตราการคัดกรองภาวะหลงลืมและพลัดตกหกล้ม',
+          target: '≥ 70%',
+          source: 'ตัวชี้วัดกลุ่มผู้สูงอายุ'
+        });
+      }
+      if (text.includes('จิต') || text.includes('suicide') || text.includes('mental')) {
+        suggestions.push({
+          kpi: 'อัตราการฆ่าตัวตายสำเร็จต่อแสนประชากร',
+          target: '< 8.0',
+          source: 'ตัวชี้วัดกระทรวงฯ'
+        });
+      }
+      if (text.includes('ไต') || text.includes('ckd')) {
+        suggestions.push({
+          kpi: 'ร้อยละผู้ป่วยไตเรื้อรัง stage 5 รายใหม่ลดลง',
+          target: '> 5%',
+          source: 'Best Practice เขตสุขภาพที่ 1'
+        });
+      }
+      if (text.includes('telemedicine') || text.includes('digital') || text.includes('เทคโนโลยี')) {
+        suggestions.push({
+          kpi: 'ร้อยละของหน่วยบริการที่ใช้ระบบ Telemedicine',
+          target: '≥ 80%',
+          source: 'ตัวชี้วัดระบบดิจิทัล'
+        });
+      }
+
+      // KPI ทั่วไปที่ควรมี
+      if (suggestions.length === 0) {
+        suggestions.push({
+          kpi: 'จำนวนผู้เข้าร่วม/ผู้ได้รับบริการ',
+          target: 'ตามศักยภาพพื้นที่',
+          source: 'KPI พื้นฐาน'
+        });
+        suggestions.push({
+          kpi: 'ระดับความพึงพอใจของผู้รับบริการ',
+          target: '≥ 80%',
+          source: 'KPI พื้นฐาน'
+        });
+      }
+
+      return suggestions;
+    }
+
+    // ฟังก์ชันแนะนำกลุ่มเป้าหมาย
+    function suggestTargetGroups(project) {
+      const text = (project.name + ' ' + (project.strategicObjective || '')).toLowerCase();
+      const targets = [];
+
+      if (text.includes('ผู้สูงอายุ') || text.includes('aged')) {
+        targets.push('ผู้สูงอายุ (60 ปีขึ้นไป) ในพื้นที่เขตสุขภาพที่ 1');
+        targets.push('ผู้ดูแลผู้สูงอายุ');
+      }
+      if (text.includes('เด็ก') || text.includes('ปฐมวัย')) {
+        targets.push('เด็กปฐมวัย (0-5 ปี)');
+        targets.push('ผู้ปกครอง/พ่อแม่');
+      }
+      if (text.includes('เบาหวาน') || text.includes('ความดัน') || text.includes('ncd')) {
+        targets.push('ผู้ป่วยกลุ่มโรคเรื้อรัง (DM/HT)');
+        targets.push('กลุ่มเสี่ยง NCDs');
+      }
+      if (text.includes('pm2.5') || text.includes('ฝุ่น') || text.includes('copd') || text.includes('หอบ')) {
+        targets.push('ผู้ป่วยกลุ่มโรคทางเดินหายใจ (COPD, Asthma)');
+        targets.push('ผู้ป่วยติดเตียง/กลุ่มเปราะบาง');
+        targets.push('เด็กปฐมวัยและหญิงตั้งครรภ์');
+      }
+      if (text.includes('จิต') || text.includes('mental')) {
+        targets.push('ผู้ป่วยจิตเวชกลุ่ม SMI-V');
+        targets.push('กลุ่มเสี่ยงฆ่าตัวตาย');
+        targets.push('ผู้ดูแล/ชุมชน');
+      }
+      if (text.includes('บุคลากร') || text.includes('แพทย์') || text.includes('พยาบาล')) {
+        targets.push('บุคลากรสาธารณสุขในพื้นที่');
+      }
+      if (targets.length === 0) {
+        targets.push('ประชาชนในพื้นที่เขตสุขภาพที่ 1');
+        targets.push('หน่วยบริการสุขภาพในเขต');
+      }
+
+      return targets;
+    }
+
     // ==================== MODAL FUNCTIONS ====================
 
     // สร้าง Modal HTML
@@ -1463,6 +1822,19 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
               <div class="modal-section" id="modal-source-section" style="display:none;">
                 <div class="modal-label">แหล่งข้อมูล</div>
                 <div class="modal-value" id="modal-source"></div>
+              </div>
+              
+              <!-- AI Analysis Section -->
+              <div class="modal-section" id="modal-ai-section" style="border-top: 2px solid var(--line); margin-top: 20px; padding-top: 20px;">
+                <div class="modal-label" style="color: var(--accent); font-size: 13px;">
+                  🤖 AI Analysis - การวิเคราะห์ความสอดคล้อง
+                </div>
+                <div class="modal-value" id="modal-ai-content">
+                  <div id="ai-score-summary" style="margin: 10px 0; padding: 12px; background: #F0FDF4; border-radius: 8px;"></div>
+                  <div id="ai-missing-items" style="margin: 10px 0;"></div>
+                  <div id="ai-suggested-kpis" style="margin: 10px 0;"></div>
+                  <div id="ai-suggested-targets" style="margin: 10px 0;"></div>
+                </div>
               </div>
             </div>
           </div>
@@ -1543,12 +1915,89 @@ Development Training Project, Health region 1)",,,,,58420.0,,อยู่ระ�
           source.innerHTML = 'ข้อมูลหลักจาก: <strong>สรุปแผนรวม(up 04.02.69).xlsx</strong> (รอการเชื่อมโยงรายละเอียดจากสาขา)';
           sourceSection.style.display = 'block';
         } else {
-          objective.innerHTML = '<div class="info-placeholder">รายละเอียดโครงการเรือธงอยู่ระหว่างจัดเตรียม<br><br>กรุณาติดต่อผู้รับผิดชอบโครงการสำหรับข้อมูลเพิ่มเติม</div>';
+          // ตรวจสอบว่ามีข้อมูลวัตถุประสงค์จาก data-flagship หรือไม่
+          if (project.strategicObjective) {
+            objective.textContent = project.strategicObjective;
+          } else {
+            objective.innerHTML = '<div class="info-placeholder">รายละเอียดโครงการเรือธงอยู่ระหว่างจัดเตรียม<br><br>กรุณาติดต่อผู้รับผิดชอบโครงการสำหรับข้อมูลเพิ่มเติม</div>';
+          }
           target.innerHTML = '<div class="info-placeholder">ข้อมูลกลุ่มเป้าหมายอยู่ระหว่างจัดเตรียม</div>';
-          source.innerHTML = 'ข้อมูลหลักจาก: <strong>สรุปแผนรวม(up 04.02.69).xlsx</strong> (Flagship Project)';
+          source.innerHTML = 'ข้อมูลหลักจาก: <strong>สรุปโครงการ ส่ง ผตร. 1.xlsx</strong> (Flagship Project)';
           sourceSection.style.display = 'block';
         }
       }
+
+      // ===== AI Analysis Section =====
+      const aiScore = calculateAIScore(project);
+      const aiScoreSummary = document.getElementById('ai-score-summary');
+      const aiMissingItems = document.getElementById('ai-missing-items');
+      const aiSuggestedKPIs = document.getElementById('ai-suggested-kpis');
+      const aiSuggestedTargets = document.getElementById('ai-suggested-targets');
+
+      // แสดงคะแนน AI
+      const gradeColor = aiScore.grade === 'A' ? '#059669' : aiScore.grade === 'B' ? '#2563EB' : aiScore.grade === 'C' ? '#D97706' : '#DC2626';
+      aiScoreSummary.innerHTML = `
+        <div style="display:flex; align-items:center; gap:15px;">
+          <div style="width:50px; height:50px; border-radius:50%; background:${gradeColor}; color:white; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700;">
+            ${aiScore.grade}
+          </div>
+          <div>
+            <div style="font-size:16px; font-weight:600;">AI Score: ${aiScore.total}/100</div>
+            <div style="font-size:13px; color:#6B7280;">${aiScore.status}</div>
+          </div>
+        </div>
+        <div style="margin-top:10px; font-size:12px; color:#6B7280;">
+          คะแนนย่อย: ยุทธศาสตร์ ${aiScore.scores.excellence}/20 | ปัญหาหลัก ${aiScore.scores.problemAlignment}/30 | Area Based ${aiScore.scores.areaBased}/15 | นวัตกรรม ${aiScore.scores.innovation}/10 | ความสมบูรณ์ ${aiScore.scores.completeness}/15 | งบประมาณ ${aiScore.scores.budgetReasonable}/10
+        </div>
+      `;
+
+      // แสดงจุดที่ต้องปรับปรุง
+      if (aiScore.missingItems.length > 0) {
+        aiMissingItems.innerHTML = `
+          <div style="background:#FEF3C7; border-left:4px solid #F59E0B; padding:12px; border-radius:0 8px 8px 0;">
+            <div style="font-weight:600; color:#92400E; margin-bottom:8px;">⚠️ จุดที่ต้องปรับปรุงเพื่อให้ผ่านเกณฑ์ผู้ตรวจราชการ:</div>
+            <ul style="margin:0; padding-left:20px; font-size:13px; color:#92400E;">
+              ${aiScore.missingItems.map(item => `<li style="margin:4px 0;">${item}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+      } else {
+        aiMissingItems.innerHTML = `
+          <div style="background:#D1FAE5; border-left:4px solid #10B981; padding:12px; border-radius:0 8px 8px 0;">
+            <div style="font-weight:600; color:#065F46;">✅ ข้อมูลครบถ้วนตามเกณฑ์พื้นฐาน</div>
+          </div>
+        `;
+      }
+
+      // แสดงตัวชี้วัดที่แนะนำ
+      const kpis = suggestKPIs(project);
+      aiSuggestedKPIs.innerHTML = `
+        <div style="margin-top:15px;">
+          <div style="font-weight:600; color:#374151; margin-bottom:8px;">📊 ตัวชี้วัดที่แนะนำ (KPIs):</div>
+          <div style="display:grid; gap:8px;">
+            ${kpis.map(kpi => `
+              <div style="background:#F3F4F6; padding:10px; border-radius:8px; font-size:13px;">
+                <div style="font-weight:600; color:#111827;">${kpi.kpi}</div>
+                <div style="color:#6B7280; margin-top:4px;">เป้าหมาย: <span style="color:#059669; font-weight:600;">${kpi.target}</span> | ที่มา: ${kpi.source}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+
+      // แสดงกลุ่มเป้าหมายที่แนะนำ
+      const targets = suggestTargetGroups(project);
+      aiSuggestedTargets.innerHTML = `
+        <div style="margin-top:15px;">
+          <div style="font-weight:600; color:#374151; margin-bottom:8px;">🎯 กลุ่มเป้าหมายที่แนะนำ:</div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px;">
+            ${targets.map(target => `
+              <span style="background:#E0F2FE; color:#0369A1; padding:4px 12px; border-radius:999px; font-size:12px;">${target}</span>
+            `).join('')}
+          </div>
+        </div>
+      `;
+      // ===== End AI Analysis =====
 
       // แสดง Modal
       modal.classList.add('active');
